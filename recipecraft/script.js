@@ -91,10 +91,10 @@ function autoGenerateWood(baseData) {
         { id: "diorite", name: "Diorite", hasPolished: true },
         { id: "andesite", name: "Andesite", hasPolished: true },
         { id: "granite", name: "Granite", hasPolished: true },
-        { id: "sandstone", name: "Sandstone", hasPolished: false },
+        { id: "sandstone", name: "Sandstone", hasPolished: false, craftFrom: "sand"},
         { id: "smooth_sandstone", name: "Smooth Sandstone", hasPolished: false, craftFrom: "sandstone"},
-        { id: "quartz_block", name: "Block of Quartz", hasPolished: false},
-        { id: "smooth_quartz", name: "Smooth Quartz Block", hasPolished: false, craftFrom: "quartz_block"},
+        { id: "quartz_block", name: "Block of Quartz", hasPolished: false, craftFrom: "quartz"},
+        { id: "smooth_quartz", name: "Smooth Quartz Block", hasPolished: false, smeltFrom: "quartz_block"},
         { id: "blackstone", name: "Blackstone", hasPolished: true }, 
         // hasPolished: true générera automatiquement "Polished Blackstone" + variants
 
