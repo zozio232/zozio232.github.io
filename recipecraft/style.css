@@ -60,9 +60,21 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    background: rgba(0, 0, 0, 0.2); /* Petit fond pour séparer visuellement */
     padding: 15px;
-    border-radius: 8px;
+    
+    /* Le gris iconique du menu Minecraft */
+    background-color: #c6c6c6; 
+    
+    /* Bordure extérieure noire */
+    border: 3px solid #000; 
+    
+    /* L'effet de relief (Biseau) */
+    /* Haut et Gauche en blanc, Bas et Droite en gris foncé */
+    box-shadow: inset 3px 3px 0px #ffffff, 
+                inset -3px -3px 0px #555555;
+    
+    /* Pour garder des angles bien carrés style pixel */
+    image-rendering: pixelated; 
 }
 
 .grid-3x3 {
@@ -94,10 +106,22 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    background: rgba(0, 0, 0, 0.2);
     padding: 20px;
-    border-radius: 10px;
     width: fit-content;
+
+    /* --- LOOK MINECRAFT --- */
+    background-color: #c6c6c6; /* Le gris de l'interface */
+    
+    /* Bordure extérieure pixelisée */
+    border: 4px solid #000; 
+
+    /* L'effet de relief (Biseau) */
+    /* Toujours Blanc en haut/gauche et Gris Foncé en bas/droite */
+    box-shadow: inset 4px 4px 0px #ffffff, 
+                inset -4px -4px 0px #555555;
+    
+    /* Optionnel : évite que les bords soient flous */
+    image-rendering: pixelated;
 }
 
 /* La colonne avec l'item et le feu */

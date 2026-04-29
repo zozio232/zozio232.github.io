@@ -78,6 +78,115 @@ function autoGenerateWood(baseData) {
     neutrals.forEach(n => {
         if(!generated.find(i => i.id === n.id)) generated.push(n);
     });
+
+    // --- 2. GÉNÉRATION DES PIERRES (NEW) ---
+    const stoneTypes = [
+        { id: "stone", name: "Stone", hasPolished: false, smeltFrom: "cobblestone" },
+        { id: "smooth_stone", name: "Smooth Stone", hasPolished: false, smeltFrom: "stone" },
+        { id: "cobblestone", name: "Cobblestone", hasPolished: false },
+        // Deepslate : On sépare bien les deux
+        { id: "cobbled_deepslate", name: "Cobbled Deepslate", hasPolished: false }, 
+        { id: "polished_deepslate", name: "Polished Deepslate", hasPolished: false, craftFrom: "cobbled_deepslate" },
+        // Autres pierres
+        { id: "diorite", name: "Diorite", hasPolished: true },
+        { id: "andesite", name: "Andesite", hasPolished: true },
+        { id: "granite", name: "Granite", hasPolished: true },
+        { id: "sandstone", name: "Sandstone", hasPolished: false },
+        { id: "smooth_sandstone", name: "Smooth Sandstone", hasPolished: false, smeltFrom: "sandstone" },
+        { id: "quartz_block", name: "Block of Quartz", hasPolished: false },
+        { id: "smooth_quartz", name: "Smooth Quartz Block", hasPolished: false, smeltFrom: "quartz_block" },
+        { id: "blackstone", name: "Blackstone", hasPolished: true }, 
+        // hasPolished: true générera automatiquement "Polished Blackstone" + variants
+
+        { id: "polished_blackstone_bricks", name: "Polished Blackstone Bricks", hasPolished: false, craftFrom: "polished_blackstone" }
+    ];
+
+stoneTypes.forEach(s => {
+    const base = s.id;
+    
+    // 1. Ajouter l'objet de base (Stone, Diorite, etc.)
+    if(!generated.find(i => i.id === base)) {
+        generated.push({
+            id: base, name: s.name, category: "Building",
+            icon: `assets/items/${base}.png`,
+            smelting: s.smeltFrom ? { ingredient: s.smeltFrom } : null
+        });
+    }
+
+    // 2. Variantes pour le bloc DE BASE
+    // Sandstone, Quartz, Smooth -> Pas de murs
+    const baseHasWall = !base.includes("quartz") && !base.includes("sandstone") && !base.includes("smooth");
+    const baseHasStairs = (base !== "smooth_stone"); 
+
+    generateStoneVariants(base, s.name, baseHasWall, baseHasStairs);
+
+    // 3. Cas spécial : Polished
+    if (s.hasPolished) {
+        const pId = `polished_${base}`;
+        const pName = `Polished ${s.name}`;
+        
+        generated.push({
+            id: pId, name: pName, category: "Building",
+            icon: `assets/items/${pId}.png`,
+            recipes: [[ [null,null,null], [null,base,base], [null,base,base] ]], obtain: 4
+        });
+
+        // --- LA CORRECTION ICI ---
+        // Seule la Polished Blackstone et la Polished Deepslate ont des murs.
+        // La Polished Andesite/Diorite/Granite n'en ont PAS.
+        const polishedHasWall = pId.includes("blackstone") || pId.includes("deepslate");
+        
+        generateStoneVariants(pId, pName, polishedHasWall, true);
+    }
+});
+    // Fonction utilitaire mise à jour avec des drapeaux (flags)
+function generateStoneVariants(id, name, withWall, withStairs) {
+    // 1. On nettoie le nom de base (ex: "Polished Blackstone Bricks")
+    let baseName = name
+        .replace(/^Block of /i, "")
+        .replace(/ Block$/i, "");
+
+    // 2. LOGIQUE DE NOMMAGE PROPRE
+    // Si on a des "Bricks", pour les variantes, on met au singulier "Brick"
+    // Exemple: "Polished Blackstone Bricks" -> "Polished Blackstone Brick Stairs"
+    const variantNameBase = baseName.replace(/ Bricks$/i, " Brick");
+
+    const variants = [
+        { suffix: "_slab", n: "Slab", qty: 6, r: [[id,id,id],[null,null,null],[null,null,null]] }
+    ];
+    
+    if (withStairs) {
+        variants.push({ suffix: "_stairs", n: "Stairs", qty: 4, r: [[id,null,null],[id,id,null],[id,id,id]] });
+    }
+    
+    if (withWall) {
+        variants.push({ suffix: "_wall", n: "Wall", qty: 6, r: [[id,id,id],[id,id,id],[null,null,null]] });
+    }
+
+    variants.forEach(v => {
+        let vId = id + v.suffix;
+
+        // Correctifs d'IDs pour correspondre à tes fichiers .png
+        vId = vId.replace("quartz_block_", "quartz_");
+        
+        // Minecraft utilise "polished_blackstone_brick_stairs" (sans le S à brick)
+        // alors que le bloc de base est "polished_blackstone_bricks"
+        if (vId.includes("blackstone_bricks_")) {
+            vId = vId.replace("blackstone_bricks_", "blackstone_brick_");
+        }
+
+        if(!generated.find(i => i.id === vId)) {
+            generated.push({
+                id: vId, 
+                name: `${variantNameBase} ${v.n}`, // Donne "Polished Blackstone Brick Stairs"
+                category: "Building",
+                icon: `assets/items/${vId}.png`,
+                recipes: [v.r], 
+                obtain: v.qty
+            });
+        }
+    });
+}
     // --- 3. GÉNÉRATION DES BOIS ---
     woodTypes.forEach(type => {
         const t = type.toLowerCase();
