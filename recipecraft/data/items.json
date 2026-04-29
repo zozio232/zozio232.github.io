@@ -1,0 +1,1420 @@
+[
+  {
+    "id": "obsidian",
+    "name": "Obsidian",
+    "icon": "assets/items/obsidian.png",
+    "recipes": null
+  },
+    {
+    "id": "coal",
+    "name": "Coal",
+    "category": "Ingredients",
+    "icon": "assets/items/coal.webp",
+    "recipes": null
+  },
+    {
+    "id": "charcoal",
+    "name": "Charcoal",
+    "category": "Ingredients",
+    "icon": "assets/items/charcoal.png",
+    "smelting": { "ingredient": "oak_log" }
+  },
+    {
+    "id": "diamond",
+    "name": "Diamond",
+    "category": "Ingredients",
+    "icon": "assets/items/diamond.png",
+    "smelting": { "ingredient": "diamond_ore" },
+    "recipes": [
+    [
+      [null, null, null],
+      [null, "diamond_block", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":9
+  },
+  {
+    "id": "iron_ingot",
+    "name": "Iron Ingot",
+    "category": "Ingredients",
+    "icon": "assets/items/iron.png",
+    "smelting": { "ingredient": "raw_iron" },
+    "recipes":[
+    [
+      ["iron_nugget", "iron_nugget", "iron_nugget"],
+      ["iron_nugget", "iron_nugget", "iron_nugget"],
+      ["iron_nugget", "iron_nugget", "iron_nugget"]
+    ]
+    ]
+  },
+    {
+    "id": "gold_ingot",
+    "name": "Gold Ingot",
+    "category": "Ingredients",
+    "icon": "assets/items/gold_ingot.webp",
+    "smelting": { "ingredient": "raw_gold" },
+    "recipes":[
+    [
+      ["iron_nugget", "iron_nugget", "iron_nugget"],
+      ["iron_nugget", "iron_nugget", "iron_nugget"],
+      ["iron_nugget", "iron_nugget", "iron_nugget"]
+    ]
+    ],
+    "obtain":9
+  },
+      {
+    "id": "copper_ingot",
+    "name": "Copper Ingot",
+    "category": "Ingredients",
+    "icon": "assets/items/copper_ingot.webp",
+    "smelting": { "ingredient": "raw_copper" },
+    "recipes":[
+    [
+      ["copper_nugget", "copper_nugget", "copper_nugget"],
+      ["copper_nugget", "copper_nugget", "copper_nugget"],
+      ["copper_nugget", "copper_nugget", "copper_nugget"]
+    ]
+    ],
+    "obtain":1
+  },
+  
+    {
+    "id": "iron_nugget",
+    "name": "Iron Nugget",
+    "category": "Ingredients",
+    "icon": "assets/items/iron_nugget.webp",
+    "recipes": [
+    [
+      [null, null, null],
+      [null, "iron_ingot", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":9
+  },
+  {
+    "id": "gold_nugget",
+    "name": "Gold Nugget",
+    "category": "Ingredients",
+    "icon": "assets/items/gold_nugget.webp",
+    "recipes": [
+    [
+      [null, null, null],
+      [null, "gold_ingot", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":9
+  },
+    {
+    "id": "copper_nugget",
+    "name": "Copper Nugget",
+    "category": "Ingredients",
+    "icon": "assets/items/copper_nugget.webp",
+    "recipes": [
+    [
+      [null, null, null],
+      [null, "copper_ingot", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":9
+  },
+        {
+    "id": "diamond_block",
+    "name": "Block of Diamond",
+    "category": "Blocks",
+    "icon": "assets/items/diamond_block.png",
+    "recipes": [
+    [
+      ["diamond", "diamond", "diamond"],
+      ["diamond", "diamond", "diamond"],
+      ["diamond", "diamond", "diamond"]
+    ]
+    ],
+    "obtain":1
+  },
+    {
+    "id": "iron_block",
+    "name": "Block of Iron",
+    "category": "Blocks",
+    "icon": "assets/items/iron_block.webp",
+    "recipes": [
+    [
+      ["iron_ingot", "iron_ingot", "iron_ingot"],
+      ["iron_ingot", "iron_ingot", "iron_ingot"],
+      ["iron_ingot", "iron_ingot", "iron_ingot"]
+    ]
+    ]
+  },
+      {
+    "id": "gold_block",
+    "name": "Block of Gold",
+    "category": "Blocks",
+    "icon": "assets/items/gold_block.png",
+    "recipes": [
+    [
+      ["gold_ingot", "gold_ingot", "gold_ingot"],
+      ["gold_ingot", "gold_ingot", "gold_ingot"],
+      ["gold_ingot", "gold_ingot", "gold_ingot"]
+    ]
+    ]
+  },
+    {
+    "id": "copper_block",
+    "name": "Block of Copper",
+    "category": "Blocks",
+    "icon": "assets/items/copper_block.png",
+    "recipes": [
+    [
+      ["copper_ingot", "copper_ingot", "copper_ingot"],
+      ["copper_ingot", "copper_ingot", "copper_ingot"],
+      ["copper_ingot", "copper_ingot", "copper_ingot"]
+    ]
+    ]
+  },
+
+
+
+
+
+      {
+    "id": "raw_iron_block",
+    "name": "Raw block of Iron",
+    "category": "Blocks",
+    "icon": "assets/items/raw_iron_block.png",
+    "recipes": [
+    [
+      ["raw_iron", "raw_iron", "raw_iron"],
+      ["raw_iron", "raw_iron", "raw_iron"],
+      ["raw_iron", "raw_iron", "raw_iron"]
+    ]
+    ]
+  },
+      {
+    "id": "raw_gold_block",
+    "name": "Raw block of Gold",
+    "category": "Blocks",
+    "icon": "assets/items/raw_gold_block.png",
+    "recipes": [
+    [
+      ["raw_gold", "raw_gold", "raw_gold"],
+      ["raw_gold", "raw_gold", "raw_gold"],
+      ["raw_gold", "raw_gold", "raw_gold"]
+    ]
+    ]
+  },
+    {
+    "id": "raw_copper_block",
+    "name": "Raw block of Copper",
+    "category": "Blocks",
+    "icon": "assets/items/raw_copper_block.png",
+    "recipes": [
+    [
+      ["raw_copper", "raw_copper", "raw_copper"],
+      ["raw_copper", "raw_copper", "raw_copper"],
+      ["raw_copper", "raw_copper", "raw_copper"]
+    ]
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+    "id": "redstone_block",
+    "name": "Block of Redstone",
+    "category": "Redstone",
+    "icon": "assets/items/redstone_block.png",
+    "recipes": [
+    [
+      ["redstone_dust", "redstone_dust", "redstone_dust"],
+      ["redstone_dust", "redstone_dust", "redstone_dust"],
+      ["redstone_dust", "redstone_dust", "redstone_dust"]
+    ]
+    ]
+  },
+      {
+    "id": "redstone_dust",
+    "name": "Redstone Dust",
+    "category": "Redstone",
+    "icon": "assets/items/redstone_dust.webp",
+    "smelting": { "ingredient": "redstone_ore" },
+    "recipes" :[
+    [
+      [null, null, null],
+      [null, "redstone_block", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":9
+  },
+        {
+    "id": "redstone_reapeater",
+    "name": "Redstone Repeater",
+    "category": "Redstone",
+    "icon": "assets/items/redstone_repeater.png",
+    "recipes":[
+    [
+      [null, null, null],
+      ["redstone_torch", "redstone_dust", "redstone_torch"],
+      ["stone", "stone", "stone"]
+    ]
+    ],
+    "obtain":1
+  },
+    {
+    "id": "redstone_comparator",
+    "name": "Redstone Comparator",
+    "category": "Redstone",
+    "icon": "assets/items/redstone_comparator.png",
+    "recipes":[
+    [
+      [null, "redstone_torch", null],
+      ["redstone_torch", "nether_quartz", "redstone_torch"],
+      ["stone", "stone", "stone"]
+    ]
+    ],
+    "obtain":1
+  },
+   {
+    "id": "observer",
+    "name": "Observer",
+    "category": "Redstone",
+    "icon": "assets/items/observer.png",
+    "recipes":[
+    [
+      ["cobblestone", "cobblestone", "cobblestone"],
+      ["redstone_dust", "redstone_dust", "nether_quartz"],
+      ["cobblestone", "cobblestone", "cobblestone"]
+    ]
+    ],
+    "obtain":1
+  },
+   {
+    "id": "tripwire_hook",
+    "name": "Tripwire Hook",
+    "icon": "assets/items/tripwire_hook.webp",
+    "category": "Redstone",
+    "recipes": [
+    [
+      [null, "string", null],
+      [null, "stick", null],
+      [null, "planks", null]
+    ]
+    ]
+  },
+      {
+    "id": "lever",
+    "name": "Lever",
+    "category": "Redstone",
+    "icon": "assets/items/lever.webp",
+    "recipes":[
+    [
+      [null, null, null],
+      [null, "stick", null],
+      [null, "cobblestone", null]
+    ]
+    ],
+    "obtain":1
+  },
+    {
+    "id": "redstone_torch",
+    "name": "Redstone Torch",
+    "category": "Redstone",
+    "icon": "assets/items/redstone_torch.png",
+    "recipes":[
+    [
+      [null, null, null],
+      [null, "redstone_dust", null],
+      [null, "stick", null]
+    ]
+    ],
+    "obtain":4
+  },
+  {
+    "id": "redstone_ore",
+    "name": "Redstone Ore",
+    "category": "Redstone",
+    "icon": "assets/items/redstone_ore.png"
+  },
+    {
+    "id": "diamond_ore",
+    "name": "Diamond Ore",
+    "category": "Blocks",
+    "icon": "assets/items/diamond_ore.png"
+  },
+  {
+    "id": "iron_ore",
+    "name": "Iron Ore",
+    "category": "Blocks",
+    "icon": "assets/items/iron_ore.png"
+  },
+
+
+  {
+    "id": "raw_iron",
+    "name": "Raw Iron",
+    "category": "Ingredients",
+    "icon": "assets/items/raw_iron.png",
+    "recipes": 
+    [
+    [
+      [null, null, null],
+      [null, "raw_iron_block", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":9
+  },
+        {
+    "id": "raw_gold",
+    "name": "Raw Gold",
+    "category": "Ingredients",
+    "icon": "assets/items/raw_gold.png",
+    "recipes":[
+    [
+      [null, null, null],
+      [null, "raw_gold_block", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":9
+  },
+    {
+    "id": "raw_copper",
+    "name": "Raw Copper",
+    "category": "Ingredients",
+    "icon": "assets/items/raw_copper.webp",
+    "recipes":[
+    [
+      [null, null, null],
+      [null, "raw_copper_block", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":9
+  },
+
+
+
+
+
+
+
+
+
+
+
+{
+    "id": "wooden_sword",
+    "name": "Wooden Sword",
+    "icon": "assets/items/wooden_sword.png",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, "planks", null],
+      [null, "planks", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+    {
+    "id": "stone_sword",
+    "name": "Stone Sword",
+    "icon": "assets/items/stone_sword.png",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, "cobblestone", null],
+      [null, "cobblestone", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "copper_sword",
+    "name": "Copper Sword",
+    "icon": "assets/items/copper_sword.webp",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, "copper_ingot", null],
+      [null, "copper_ingot", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+    {
+    "id": "iron_sword",
+    "name": "Iron Sword",
+    "icon": "assets/items/iron_sword.webp",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, "iron_ingot", null],
+      [null, "iron_ingot", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+    {
+    "id": "gold_sword",
+    "name": "Golden Sword",
+    "icon": "assets/items/gold_sword.webp",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, "gold_ingot", null],
+      [null, "gold_ingot", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+    {
+    "id": "diamond_sword",
+    "name": "Diamond Sword",
+    "icon": "assets/items/diamond_sword.webp",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, "diamond", null],
+      [null, "diamond", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+    {
+    "id": "wooden_spear",
+    "name": "Wooden Spear",
+    "icon": "assets/items/wooden_spear.png",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, null, "planks"],
+      [null, "stick", null],
+      ["stick", null, null]
+    ]
+    ]
+  },
+    {
+    "id": "stone_spear",
+    "name": "Stone Spear",
+    "icon": "assets/items/stone_spear.png",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, null, "cobblestone"],
+      [null, "stick", null],
+      ["stick", null, null]
+    ]
+    ]
+  },
+  {
+    "id": "copper_spear",
+    "name": "Copper Spear",
+    "icon": "assets/items/copper_spear.png",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, null, "copper_ingot"],
+      [null, "stick", null],
+      ["stick", null, null]
+    ]
+    ]
+  },
+      {
+    "id": "iron_spear",
+    "name": "Iron Spear",
+    "icon": "assets/items/iron_spear.png",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, null, "iron_ingot"],
+      [null, "stick", null],
+      ["stick", null, null]
+    ]
+    ]
+  },
+      {
+    "id": "gold_spear",
+    "name": "Golden Spear",
+    "icon": "assets/items/gold_spear.png",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, null, "gold_ingot"],
+      [null, "stick", null],
+      ["stick", null, null]
+    ]
+    ]
+  },
+      {
+    "id": "diamond_spear",
+    "name": "Diamond Spear",
+    "icon": "assets/items/diamond_spear.png",
+    "category": "Weapons",
+    "recipes":[
+    [
+      [null, null, "diamond"],
+      [null, "stick", null],
+      ["stick", null, null]
+    ]
+    ]
+  },
+  {
+    "id": "mace",
+    "name": "Mace",
+    "icon": "assets/items/mace.png",
+    "category": "Weapons",
+    "recipes": [
+    [
+      [null, null, null],
+      [null, "heavy_core", null],
+      [null, "breeze_rod", null]
+    ]
+    ]
+  },
+  {
+    "id": "bow",
+    "name": "Bow",
+    "icon": "assets/items/bow.webp",
+    "category": "Weapons",
+    "recipes": [
+    [
+      [null, "stick", "string"],
+      ["stick", null, "string"],
+      [null, "stick", "string"]
+    ]
+    ]
+  },
+ {
+    "id": "crossbow",
+    "name": "Crossbow",
+    "icon": "assets/items/crossbow.webp",
+    "category": "Weapons",
+    "recipes": [
+    [
+      ["stick", "iron_ingot", "stick"],
+      ["string", "tripwire_hook", "string"],
+      [null, "stick", null]
+    ]
+    ]
+  },
+
+
+
+{
+    "id": "wooden_shovel",
+    "name": "Wooden Shovel",
+    "icon": "assets/items/wooden_shovel.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "planks", null],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "stone_shovel",
+    "name": "Stone Shovel",
+    "icon": "assets/items/stone_shovel.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "cobblestone", null],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "copper_shovel",
+    "name": "Copper Shovel",
+    "icon": "assets/items/copper_shovel.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "copper_ingot", null],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "iron_shovel",
+    "name": "Iron Shovel",
+    "icon": "assets/items/iron_shovel.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "planks", null],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "gold_shovel",
+    "name": "Golden Shovel",
+    "icon": "assets/items/gold_shovel.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "gold_ingot", null],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "diamond_shovel",
+    "name": "Diamond Shovel",
+    "icon": "assets/items/diamond_shovel.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "diamond", null],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "wooden_axe",
+    "name": "Wooden Axe",
+    "icon": "assets/items/wooden_axe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "planks", "planks"],
+      [null, "stick", "planks"],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "stone_axe",
+    "name": "Stone Axe",
+    "icon": "assets/items/stone_axe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "cobblestone", "cobblestone"],
+      [null, "stick", "cobblestone"],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "copper_axe",
+    "name": "Copper Axe",
+    "icon": "assets/items/copper_axe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "copper_ingot", "copper_ingot"],
+      [null, "stick", "copper_ingot"],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "iron_axe",
+    "name": "Iron Axe",
+    "icon": "assets/items/iron_axe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "iron_ingot", "iron_ingot"],
+      [null, "stick", "iron_ingot"],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "gold_axe",
+    "name": "Golden Axe",
+    "icon": "assets/items/gold_axe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "gold_ingot", "gold_ingot"],
+      [null, "stick", "gold_ingot"],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "diamond_axe",
+    "name": "Diamond Axe",
+    "icon": "assets/items/diamond_axe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "diamond", "diamond"],
+      [null, "stick", "diamond"],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "wooden_pickaxe",
+    "name": "Wooden Pickaxe",
+    "icon": "assets/items/wooden_pickaxe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      ["planks", "planks", "planks"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "stone_pickaxe",
+    "name": "Stone Pickaxe",
+    "icon": "assets/items/stone_pickaxe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      ["cobblestone", "cobblestone", "cobblestone"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "copper_pickaxe",
+    "name": "Copper Pickaxe",
+    "icon": "assets/items/copper_pickaxe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      ["copper_ingot", "copper_ingot", "copper_ingot"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "iron_pickaxe",
+    "name": "Iron Pickaxe",
+    "icon": "assets/items/iron_pickaxe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      ["iron_ingot", "iron_ingot", "iron_ingot"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "gold_pickaxe",
+    "name": "Golden Pickaxe",
+    "icon": "assets/items/gold_pickaxe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      ["gold_ingot", "gold_ingot", "gold_ingot"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "diamond_pickaxe",
+    "name": "Diamond Pickaxe",
+    "icon": "assets/items/diamond_pickaxe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      ["diamond", "diamond", "diamond"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+{
+    "id": "wooden_hoe",
+    "name": "Wooden Hoe",
+    "icon": "assets/items/wooden_hoe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "planks", "planks"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "stone_hoe",
+    "name": "Stone Hoe",
+    "icon": "assets/items/stone_hoe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "cobblestone", "cobblestone"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "copper_hoe",
+    "name": "Copper Hoe",
+    "icon": "assets/items/copper_hoe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "copper_ingot", "copper_ingot"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "iron_ingot",
+    "name": "Iron Hoe",
+    "icon": "assets/items/iron_hoe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "iron_ingot", "iron_ingot"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "gold_hoe",
+    "name": "Golden Hoe",
+    "icon": "assets/items/gold_hoe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "gold_ingot", "gold_ingot"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "diamond_hoe",
+    "name": "Diamond Hoe",
+    "icon": "assets/items/diamond_hoe.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "diamond", "diamond"],
+      [null, "stick", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+  {
+    "id": "flint_and_steel",
+    "name": "Flint and Steel",
+    "icon": "assets/items/flint_and_steel.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, null, null],
+      ["iron_ingot", "flint", null],
+      [null, null, null]
+    ]
+    ]
+  },
+{
+    "id": "shears",
+    "name": "Shears",
+    "icon": "assets/items/shears.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "iron_ingot", null],
+      ["iron_ingot", null, null],
+      [null, null, null]
+    ]
+    ]
+  },
+{
+    "id": "fishing_rod",
+    "name": "Fishing Rod",
+    "icon": "assets/items/fishing_rod.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, null, "stick"],
+      [null, "stick", "string"],
+      ["stick", null, "string"]
+    ]
+    ]
+  },
+  {
+    "id": "map1",
+    "name": "Map",
+    "icon": "assets/items/map.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      ["paper", "paper", "paper"],
+      ["paper", "paper", "paper"],
+      ["paper", "paper", "paper"]
+    ]
+    ]
+  },
+    {
+    "id": "map2",
+    "name": "Navigation Map",
+    "icon": "assets/items/map.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      ["paper", "paper", "paper"],
+      ["paper", "compass", "paper"],
+      ["paper", "paper", "paper"]
+    ]
+    ]
+  },
+{
+    "id": "brush",
+    "name": "Brush",
+    "icon": "assets/items/brush.png",
+    "category": "Tools",
+    "recipes":[
+    [
+      [null, "feather", null],
+      [null, "copper_ingot", null],
+      [null, "stick", null]
+    ]
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "id": "chest",
+    "name": "Chest",
+    "category": "Storage",
+    "icon": "assets/items/chest.webp",
+    "recipes": [
+    [
+      ["planks", "planks", "planks"],
+      ["planks", null, "planks"],
+      ["planks", "planks", "planks"]
+    ]
+    ],
+    "obtain" : 1
+  },
+  {
+    "id": "ender_chest",
+    "name": "Ender Chest",
+    "category": "Storage",
+    "icon": "assets/items/ender_chest.webp",
+    "recipes": [
+    [
+      ["obsidian", "obsidian", "obsidian"],
+      ["obsidian", "eye_of_ender", "obsidian"],
+      ["obsidian", "obsidian", "obsidian"]
+    ]
+    ],
+    "obtain" : 1
+  },
+  {
+  "id": "torch",
+  "name": "Torch",
+  "category": "Utility",
+  "icon": "assets/items/torch.webp",
+  "recipes": [
+    [
+      [null, "coal", null],
+      [null, "stick", null],
+      [null, null, null]
+    ],
+    [
+      [null, "charcoal", null],
+      [null, "stick", null],
+      [null, null, null]
+    ]
+  ],
+  
+  "obtain": 4
+    },
+
+
+      {
+    "id": "copper_torch",
+    "name": "Copper Torch",
+    "category":"Utility",
+    "icon": "assets/items/copper_torch.gif",
+    "recipes": [
+    [
+      [null, "copper_nugget", null],
+      [null, "coal", null],
+      [null, "stick", null]
+    ]
+    ],
+    "obtain":4
+  },
+
+    {
+    "id": "stick",
+    "name": "Stick",
+    "category":"Ingredients", 
+    "icon": "assets/items/stick.webp",
+    "recipes":[
+    [
+      [null, null, null],
+      [null, "planks", null],
+      [null, "planks", null]
+    ]
+    ],
+    "obtain":4
+  },
+      {
+    "id": "ladder",
+    "name": "Ladder",
+    
+    "icon": "assets/items/ladder.webp",
+    "recipes":[
+    [
+      ["stick", null, "stick"],
+      ["stick", "stick", "stick"],
+      ["stick", null, "stick"]
+    ]
+    ],
+    "obtain":4
+  },
+  {
+    "id": "stonecutter",
+    "name": "Stonecutter",
+    "category": "Utility",
+    "icon": "assets/items/stonecutter.webp",
+    "recipes": [
+    [
+      [null, null, null],
+      [null, "iron_ingot", null],
+      ["stone", "stone", "stone"]
+    ]
+    ],
+    "obtain" : 1
+  },
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+  {
+    "id": "eye_of_ender",
+    "name": "Eye of Ender",
+    "category": "Ingredients",
+    "icon": "assets/items/eye_of_ender.webp",
+    "recipes": [
+    [
+      [null, "blaze_powder", null],
+      [null, "ender_pearl", null],
+      [null, null, null]
+    ]
+    ]
+    },
+      {
+    "id": "blaze_powder",
+    "name": "Blaze Powder",
+    "category": "Ingredients",
+    "icon": "assets/items/blaze_powder.webp",
+    "recipes": [
+    [
+      [null, null, null],
+      [null, "blaze_rod", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":2
+    },
+     {
+    "id": "blaze_rod",
+    "name": "Blaze Rod",
+    "icon": "assets/items/blaze_rod.png",
+    "recipes": null
+  },
+    {
+    "id": "ender_pearl",
+    "name": "Ender Pearl",
+    "category": "Ingredients",
+    "icon": "assets/items/ender_pearl.png",
+    "recipes": null
+  },
+
+     {
+    "id": "breeze_rod",
+    "name": "Breeze Rod",
+    "category": "Ingredients",
+    "icon": "assets/items/breeze_rod.webp",
+    "recipes": null
+  },
+
+
+         {
+    "id": "heavy_core",
+    "name": "Heavy Core",
+    "category": "Ingredients",
+    "icon": "assets/items/heavy_core.png",
+    "recipes": null
+  },
+
+         {
+    "id": "cobblestone",
+    "name": "Cobblestone",
+    "icon": "assets/items/cobblestone.png",
+    "recipes": null
+  },
+
+         {
+    "id": "furnace",
+    "name": "Furnace",
+    "category": "Utility",
+    "icon": "assets/items/furnace.png",
+    "recipes": [
+    [
+      ["cobblestone", "cobblestone", "cobblestone"],
+      ["cobblestone", null, "cobblestone"],
+      ["cobblestone", "cobblestone", "cobblestone"]
+    ]
+    ]
+  },
+
+           {
+    "id": "blast_furnace",
+    "name": "Blast Furnace",
+    "category": "Utility",
+    "icon": "assets/items/blast_furnace.png",
+    "recipes": [
+    [
+      ["iron_ingot", "iron_ingot", "iron_ingot"],
+      ["iron_ingot", "furnace", "iron_ingot"],
+      ["smooth_stone", "smooth_stone", "smooth_stone"]
+    ]
+    ]
+  },
+      {
+    "id": "smooth_stone",
+    "name": "Smooth Stone",
+    "icon": "assets/items/smooth_stone.png",
+    "smelting": { "ingredient": "stone" }
+  },
+      {
+    "id": "stone",
+    "name": "Stone",
+    "category":"Blocks",
+    "icon": "assets/items/stone.png",
+    "smelting": { "ingredient": "cobblestone" }
+  },
+
+
+
+
+    {
+    "id": "smithing_table",
+    "name": "Smithing Table",
+    "category":"Utility",
+    "icon": "assets/items/smithing_table.webp",
+    "recipes": [
+    [
+      [null, "iron_ingot", "iron_ingot"],
+      [null, "planks", "planks"],
+      [null, "planks", "planks"]
+    ]
+    ]
+  },
+  {
+    "id": "crafting_table",
+    "name": "Crafting Table",
+    "category":"Utility",
+    "icon": "assets/items/crafting_table.png",
+    "recipes": [
+    [
+      [null, "planks", "planks"],
+      [null, "planks", "planks"],
+      [null, null, null]
+    ]
+    ]
+  },
+    {
+    "id": "loom",
+    "name": "Loom",
+    "category":"Utility",
+    "icon": "assets/items/loom.webp",
+    "recipes": [
+    [
+      [null, "string", "string"],
+      [null, "planks", "planks"],
+      [null, null, null]
+    ]
+    ]
+  },
+      {
+    "id": "bookshelf",
+    "name": "Bookshelf",
+    "category": "Building",
+    "icon": "assets/items/bookshelf.webp",
+    "recipes":[
+    [
+      ["planks", "planks", "planks"],
+      ["book", "book", "book"],
+      ["planks", "planks", "planks"]
+    ]
+    ]
+  },
+        {
+    "id": "book",
+    "name": "Book",
+    "category": "Ingredients",
+    "icon": "assets/items/book.webp",
+    "recipes":[
+    [
+      ["paper", "paper", "paper"],
+      ["leather", null, null],
+      [null, null, null]
+    ]
+    ]
+  },
+   {
+    "id": "leather",
+    "name": "Leather",
+    "category": "Ingredients",
+    "icon": "assets/items/leather.webp",
+    "recipes":[
+    [
+      ["rabbit_hide", "rabbit_hide", null],
+      ["rabbit_hide", "rabbit_hide", null],
+      [null, null, null]
+    ]
+    ]
+  },
+     {
+    "id": "rabbit_hide",
+    "name": "Rabbit Hide",
+    "category": "Ingredients",
+    "icon": "assets/items/rabbit_hide.webp"
+  },
+   {
+    "id": "paper",
+    "name": "Paper",
+    "category": "Ingredients",
+    "icon": "assets/items/paper.webp",
+    "recipes":[
+    [
+      [null, null, null],
+      ["sugar_cane", "sugar_cane", "sugar_cane"],
+      [null, null, null]
+    ]
+    ],
+    "obtain":3
+  },
+     {
+    "id": "sugar_cane",
+    "name": "Sugar Cane",
+    "category": "Ingredients",
+    "icon": "assets/items/sugar_cane.png"
+  },
+      {
+    "id": "grindstone",
+    "name": "Grindstone",
+    "category":"Utility",
+    "icon": "assets/items/grindstone.webp",
+    "recipes": [
+    [
+      ["stick", "stone_slab", "stick"],
+      ["planks", null, "planks"],
+      [null, null, null]
+    ]
+    ]
+  },
+
+    {
+    "id": "nether_quartz",
+    "name": "Nether Quartz",
+    "category": "Ingredients",
+    "icon": "assets/items/nether_quartz.webp",
+    "smelting": { "ingredient": "nether_quartz_ore" }
+  },
+  {
+    "id": "nether_quartz_ore",
+    "name": "Nether Quartz Ore",
+    "category": "Blocks",
+    "icon": "assets/items/nether_quartz_ore.webp"
+  },
+    {
+    "id": "string",
+    "name": "String",
+    "category": "Ingredients",
+    "icon": "assets/items/string.webp"
+  },
+  {
+    "id": "flint",
+    "name": "Flint",
+    "category": "Ingredients",
+    "icon": "assets/items/flint.png"
+  },
+    {
+    "id": "feather",
+    "name": "Feather",
+    "category": "Ingredients",
+    "icon": "assets/items/feather.png"
+  },
+  {
+    "id": "sand",
+    "name": "Sand",
+    "category": "Blocks",
+    "icon": "assets/items/sand.webp"
+  },
+  {
+    "id": "gravel",
+    "name": "Gravel",
+    "category": "Blocks",
+    "icon": "assets/items/gravel.webp"
+  },
+    {
+    "id": "iron_chain",
+    "name": "Iron Chain",
+    "category": "Building",
+    "icon": "assets/items/iron_chain.png"
+  }
+]

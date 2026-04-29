@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide Minecraft - Wiki Style</title>
+
+<style>
+/* Importation d'une police style Minecraft (optionnel mais recommandé) */
+@import url('https://fonts.cdnfonts.com/css/minecraftia');
+
+
+
+/* Style de Steve */
+.steve-animation {
+    position: fixed;
+    bottom: 20px; /* Distance du bas de l'écran */
+    left: 0;
+    bottom: 70px;
+    width: 100px; /* Ajuste la taille selon ton GIF */
+    z-index: 1000;
+    pointer-events: none; /* Pour ne pas gêner le clic sur les liens */
+    animation: walk-around 10s linear infinite;
+}
+
+@keyframes walk-around {
+    0% {
+        left: -100px;
+        transform: scaleX(-1); /* Regarde vers la droite (si de base il regarde à gauche) */
+    }
+    45% {
+        transform: scaleX(-1); /* Continue de regarder à droite */
+    }
+    50% {
+        left: calc(100% - 100px);
+        transform: scaleX(1); /* Se retourne vers la gauche */
+    }
+    95% {
+        transform: scaleX(1); /* Continue de regarder à gauche */
+    }
+    100% {
+        left: -100px;
+        transform: scaleX(-1); /* Se retourne pour recommencer */
+    }
+}
+
+footer {
+    position: fixed; /* Il est fixé par rapport à la fenêtre */
+    bottom: 0;       /* Collé tout en bas */
+    left: 0;         /* Aligné à gauche */
+    width: 100%;     /* Prend toute la largeur */
+    
+    padding: 15px;   /* Un peu moins de padding pour gagner de la place */
+    text-align: center;
+    font-size: 12px;
+    background-color: #1a1a1a;
+    color: #aaaaaa;
+    border-top: 4px solid #000;
+    z-index: 2000;   /* Passe au-dessus de Steve si besoin */
+}
+
+
+:root {
+    --mc-bg: #313233; /* Gris foncé du fond wiki */
+    --mc-panel: #c6c6c6; /* Gris clair des menus Minecraft */
+    --mc-border-light: #ffffff;
+    --mc-border-dark: #555555;
+    --mc-button-hover: #7a7a7a;
+    --mc-link: #52a4ff;
+}
+
+body {
+    font-family: 'Minecraftia', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    /* Texture de fond : On garde tes feuilles de cerisier ou on met de la Dirt/Stone */
+    background-image: url('cherry_leaves.png'); 
+    background-repeat: repeat;
+    background-size: 64px;
+    background-attachment: fixed;
+    color: white;
+
+    
+}
+
+header img {
+    /* --- POSITIONNEMENT --- */
+    position: absolute;
+    right: 0;   /* Collé au mur de droite */
+    top: 0;     /* Collé en haut */
+    bottom: 0;  /* Collé en bas */
+    
+    /* --- TAILLE --- */
+    height: 100%; /* Prend toute la hauteur du header */
+    width: auto;  /* Garde ses proportions pour ne pas être écrasé */
+}
+/* HEADER */
+header {
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 4px solid #000;
+    padding: 20px;
+    text-align: center;
+
+        /* --- AJOUT INDISPENSABLE --- */
+    position: relative; /* Sert de repère pour le perroquet */
+    overflow: hidden;    /* Empêche le perroquet de déborder si besoin */
+    min-height: 70px;   /* Ajuste selon la taille de ton texte pour pas que ce soit trop plat */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    text-shadow: 3px 3px 0px #3f3f3f;
+    letter-spacing: 2px;
+}
+
+/* NAV BAR STYLE BOUTONS MC */
+.nav {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav a {
+    background: #555;
+    border: 2px solid #000;
+    border-top-color: #ababab;
+    border-left-color: #ababab;
+    padding: 8px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav a:hover {
+    background: #8b8b8b;
+    border-top-color: #dbdbdb;
+    border-left-color: #dbdbdb;
+}
+
+/* CONTENEUR PRINCIPAL (Style Inventaire) */
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: var(--mc-panel);
+    border: 4px solid #000;
+    /* Effet biseau style UI Minecraft */
+    box-shadow: inset 4px 4px 0px var(--mc-border-light), 
+                inset -4px -4px 0px var(--mc-border-dark);
+    padding: 30px;
+    color: #3f3f3f; /* Texte sombre sur fond clair comme dans les livres MC */
+}
+
+h2 {
+    border-bottom: 3px solid #3f3f3f;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 22px;
+    color: #1d1d1d;
+}
+
+/* GRID STYLE BLOCS */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+/* CARTES STYLE SLOT D'INVENTAIRE */
+.card {
+    background: #8b8b8b;
+    border: 3px solid #000;
+    border-top-color: #373737; /* Ombre inversée pour creuser l'item */
+    border-left-color: #373737;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    padding: 15px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.1s;
+    cursor: pointer;
+}
+
+.card strong {
+    color: #ffff55; /* Couleur or Minecraft */
+    font-size: 16px;
+    text-shadow: 2px 2px 0px #3f3f15;
+}
+
+.card span {
+    color: #e0e0e0;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    background: #7a7a7a;
+    outline: 3px solid white; /* Sélection blanche comme dans l'inventaire */
+}
+
+/* LIENS */
+a {
+    text-decoration: none;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    background-color: #1a1a1a;
+    color: #aaaaaa;
+    border-top: 4px solid #000;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>GUIDE MINECRAFT</h1>
+    <img src="parrotparty.gif" alt="Parrot Party">
+</header>
+
+<div class="nav">
+    <a href="#">ACCUEIL</a>
+    <a href="https://minecraft.wiki">WIKI</a>
+    <a href="#">GUIDES</a>
+</div>
+
+<div class="container">
+
+    <h2>Sections principales</h2>
+
+    <div class="grid">
+
+        <a href="recipecraft/index.html">
+            <div class="card">
+                <strong>Crafts</strong>
+                <span>Recettes du jeu</span>
+            </div>
+        </a>
+
+        <a href="mobs/index.html">
+            <div class="card">
+                <strong>Mobs</strong>
+                <span>Créatures et comportements</span>
+            </div>
+        </a>
+
+        <a href="biomes/index.html">
+            <div class="card">
+                <strong>Biomes</strong>
+                <span>Environnements du monde</span>
+            </div>
+        </a>
+
+        <a href="enchantements/index.html">
+            <div class="card">
+                <strong>Enchantements</strong>
+                <span>Améliorations d’équipement</span>
+            </div>
+        </a>
+
+        <a href="redstone/index.html">
+            <div class="card">
+                <strong>Redstone</strong>
+                <span>Circuits et mécanique</span>
+            </div>
+        </a>
+
+        <a href="Commands/index.html">
+            <div class="card">
+                <strong>Commandes</strong>
+                <span>Items customs & cheats</span>
+            </div>
+        </a>
+
+        <a href="Potions/index.html">
+            <div class="card">
+                <strong>Potions</strong>
+                <span>Tuto d'alchimie</span>
+            </div>
+        </a>
+
+        <a href="guides/index.html">
+            <div class="card">
+                <strong>Guides</strong>
+                <span>Astuces et tutoriels</span>
+            </div>
+        </a>
+
+    </div>
+    
+</div>
+<img src="steverunning.gif" class="steve-animation" alt="Steve running">
+<footer>
+    Page communautaire Minecraft - Non officielle <br>
+    Copyright &copy; Mojang AB.
+</footer>
+
+</body>
+</html>

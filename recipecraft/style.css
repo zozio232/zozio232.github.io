@@ -1,0 +1,201 @@
+:root {
+    --mc-gray: #8b8b8b;
+    --mc-dark: #373737;
+    --mc-light: #ffffff;
+}
+
+body {
+    background-color: #1e1e1e;
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+#search {
+    padding: 15px;
+    background: #111;
+    border: none;
+    color: white;
+    font-size: 1rem;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+}
+
+.item-row:hover { background: #3d3d3d; }
+
+.item-row img {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    image-rendering: pixelated;
+}
+
+/* Le panneau qui contient les infos de l'item */
+#details-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+/* Nouveau : Le conteneur qui va regrouper TOUTES les recettes d'un item */
+.recipes-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Si trop de recettes, elles passent à la ligne suivante */
+    gap: 30px;      /* Espace entre les deux grilles de craft */
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+/* On s'assure que chaque container de craft garde sa forme */
+.crafting-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.2); /* Petit fond pour séparer visuellement */
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.grid-3x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 64px);
+    grid-template-rows: repeat(3, 64px);
+    gap: 4px;
+}
+
+.slot {
+    width: 64px;
+    height: 64px;
+    background: var(--mc-gray);
+    border: 3px solid;
+    border-color: var(--mc-dark) var(--mc-light) var(--mc-light) var(--mc-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slot img {
+    width: 48px;
+    height: 48px;
+    image-rendering: pixelated;
+}
+
+/* Container pour la cuisson */
+.furnace-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+/* La colonne avec l'item et le feu */
+.furnace-input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Icône du feu */
+.furnace-fire {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+
+.category-title {
+    color: #ffcc00; /* Jaune Minecraft */
+    font-size: 1.1rem;
+    margin: 20px 0 10px 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #444;
+    text-transform: uppercase;
+    font-family: 'Minecraft', sans-serif; /* Si tu as la font */
+}
+
+
+
+
+
+/* 1. PERSONNALISATION DE LA BARRE DE SCROLL */
+/* Largeur de la barre */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Fond de la barre (le rail) */
+::-webkit-scrollbar-track {
+    background: #1e1e1e; 
+}
+
+/* La partie qui bouge (le curseur) */
+::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 5px;
+    border: 2px solid #1e1e1e; /* Crée un petit espace autour */
+}
+
+/* Couleur au survol */
+::-webkit-scrollbar-thumb:hover {
+    background: #516f83; /* Jaune Minecraft au survol */
+}
+
+/* 2. AGRANDIR LE MENU ET AJOUTER DE L'ESPACE */
+body {
+    display: flex;
+    margin: 0;
+    height: 100vh;
+    background-color: #313131;
+    overflow: hidden; /* Empêche le scroll sur toute la page */
+    /* On applique l'image de fond */
+    background-image: url('assets/background/image.png'); /* Vérifie bien le chemin */
+    background-repeat: repeat; /* Répète l'image partout */
+    background-size: 48px;     /* On force la taille d'origine pour être sûr */
+    image-rendering: pixelated; 
+    font-family: sans-serif;
+    color: white;
+}
+#item-list {
+    width: 350px; /* On agrandit le menu (ajuste selon tes goûts) */
+    min-width: 300px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #252525;
+    border-right: 3px solid #1a1a1a;
+    flex-grow: 1;
+}
+
+/* 3. ESPACE ENTRE LE MENU ET L'AFFICHAGE */
+#details-panel {
+    flex: 1;
+    padding: 40px; /* Augmente la marge intérieure pour décoller du menu */
+    margin-left: 20px; /* Espace supplémentaire entre la bordure et le contenu */
+    height: 100vh;
+    overflow-y: auto;
+}
+
+
+.no-recipe-box {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.no-recipe-box h3 {
+    margin-top: 0;
+    color: #ffcc00;
+    
+    font-family: 'Minecraft', sans-serif;
+}
