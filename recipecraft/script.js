@@ -92,9 +92,9 @@ function autoGenerateWood(baseData) {
         { id: "andesite", name: "Andesite", hasPolished: true },
         { id: "granite", name: "Granite", hasPolished: true },
         { id: "sandstone", name: "Sandstone", hasPolished: false },
-        { id: "smooth_sandstone", name: "Smooth Sandstone", hasPolished: false, smeltFrom: "sandstone" },
-        { id: "quartz_block", name: "Block of Quartz", hasPolished: false },
-        { id: "smooth_quartz", name: "Smooth Quartz Block", hasPolished: false, smeltFrom: "quartz_block" },
+        { id: "smooth_sandstone", name: "Smooth Sandstone", hasPolished: false, craftFrom: "sandstone"},
+        { id: "quartz_block", name: "Block of Quartz", hasPolished: false},
+        { id: "smooth_quartz", name: "Smooth Quartz Block", hasPolished: false, craftFrom: "quartz_block"},
         { id: "blackstone", name: "Blackstone", hasPolished: true }, 
         // hasPolished: true générera automatiquement "Polished Blackstone" + variants
 
@@ -115,7 +115,7 @@ stoneTypes.forEach(s => {
 
     // 2. Variantes pour le bloc DE BASE
     // Sandstone, Quartz, Smooth -> Pas de murs
-    const baseHasWall = !base.includes("quartz") && !base.includes("sandstone") && !base.includes("smooth");
+    const baseHasWall = !base.includes("quartz") && !base.includes("smooth") && !base.includes("stone");
     const baseHasStairs = (base !== "smooth_stone"); 
 
     generateStoneVariants(base, s.name, baseHasWall, baseHasStairs);
