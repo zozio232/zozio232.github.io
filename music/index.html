@@ -178,7 +178,13 @@ function onYouTubeIframeAPIReady() {
         playerVars: { 'autoplay': 0, 'controls': 0 }
     });
 }
+const dragIcon = document.createElement('img');
+dragIcon.className = 'drag-cursor';
+document.body.appendChild(dragIcon);
 
+let isDragging = false;
+let currentDiscData = null;
+let currentDiscImg = null;
 const discNames = Object.keys(ytIds);
 
 discNames.forEach(name => {
@@ -214,10 +220,16 @@ window.addEventListener('mouseup', (e) => {
     if (!isDragging) return;
     const rect = jukebox.getBoundingClientRect();
     if (e.clientX > rect.left && e.clientX < rect.right && e.clientY > rect.top && e.clientY < rect.bottom) {
-        const videoId = ytIds[currentDiscData.audio.split('/').pop().replace('.ogg', '')];
+        
+        // On extrait le nom du disque depuis l'audio (ex: "5")
+        const fileName = currentDiscData.audio.split('/').pop().replace('.ogg', '');
+        const videoId = ytIds[fileName];
+
         if (videoId && player) {
+            // CORRECT : On utilise l'API YouTube pour charger et lire
             player.loadVideoById(videoId);
             player.playVideo();
+            
             currentDiscImg = currentDiscData.src;
             jukebox.classList.add('active');
             jukebox.style.transform = "scale(1)";
@@ -231,7 +243,8 @@ window.addEventListener('mouseup', (e) => {
 jukebox.addEventListener('click', () => {
     if (jukebox.classList.contains('active')) {
         ejectDisc();
-        if (player) player.stopVideo();
+        player.pause();
+        player.src = "";
         jukebox.classList.remove('active');
     }
 });
