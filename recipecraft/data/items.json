@@ -1431,7 +1431,6 @@
     "name": "Iron Chain",
     "category": "Building",
     "icon": "assets/items/iron_chain.png"
-
   },
   {
     "id": "compass",
@@ -1445,5 +1444,29 @@
       [null, "iron_ingot", null]
     ]
     ]
+  },
+  {
+    "id": "orange_tulip",
+    "name": "Orange Tulip",
+    "category": "Colored Blocks",
+    "icon": "assets/items/orange_tulip.png"
+  },
+  {
+    "id": "orange_tulip",
+    "name": "Orange Tulip",
+    "category": "Colored Blocks",
+    "icon": "assets/items/orange_tulip.png"
+  },
+    {
+    "id": "allium",
+    "name": "Allium",
+    "category": "Colored Blocks",
+    "icon": "assets/items/allium.png"
+  },
+    {
+    "id": "blue_orchid",
+    "name": "Blue Orchid",
+    "category": "Building",
+    "icon": "assets/items/blue_orchid.png"
   }
 ]
