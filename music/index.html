@@ -154,36 +154,13 @@
 
 <div id="inventory"></div>
 
-<iframe id="sc-player" style="display:none" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1"></iframe>
-<script src="https://w.soundcloud.com/player/api.js"></script>
+<audio id="player" loop></audio>
 
 <script>
 // --- LE MÊME SCRIPT QUE TOUT À L'HEURE (IL ÉTAIT PARFAIT) ---
 const jukebox = document.getElementById('jukebox');
+const player = document.getElementById('player');
 const inventory = document.getElementById('inventory');
-const iframeElement = document.getElementById('sc-player');
-const widget = SC.Widget(iframeElement); // C'est lui qui va remplacer 'player'
-
-// On crée un dictionnaire pour lier tes fichiers OGG aux liens SoundCloud
-const scLinks = {
-    "5": "https://soundcloud.com/official-minecraft/track-5",
-    "11": "https://soundcloud.com/c418/11a",
-    "13": "https://soundcloud.com/c418/13a",
-    "blocks": "https://soundcloud.com/c418/blocks",
-    "cat": "https://soundcloud.com/c418/cat",
-    "chirp": "https://soundcloud.com/c418/chirp",
-    "creator": "https://soundcloud.com/lena-raine/creator",
-    "far": "https://soundcloud.com/c418/far",
-    "mall": "https://soundcloud.com/c418/mall",
-    "mellohi": "https://soundcloud.com/c418/mellohi",
-    "otherside": "https://soundcloud.com/lena-raine/otherside",
-    "pigstep": "https://soundcloud.com/lena-raine/pigstep",
-    "relic": "https://soundcloud.com/aaroncherof/relic",
-    "stal": "https://soundcloud.com/c418/stal",
-    "strad": "https://soundcloud.com/c418/strad",
-    "wait": "https://soundcloud.com/c418/wait",
-    "ward": "https://soundcloud.com/c418/ward"
-};
 
 const dragIcon = document.createElement('img');
 dragIcon.className = 'drag-cursor';
@@ -228,26 +205,11 @@ window.addEventListener('mouseup', (e) => {
     if (!isDragging) return;
     const rect = jukebox.getBoundingClientRect();
     if (e.clientX > rect.left && e.clientX < rect.right && e.clientY > rect.top && e.clientY < rect.bottom) {
-        
-        // On récupère le nom propre du disque (ex: "creator")
-        const fileName = currentDiscData.audio.split('/').pop().replace('.ogg', '');
-        const soundcloudUrl = scLinks[fileName];
-
-        if (soundcloudUrl) {
-            // On demande au widget SoundCloud de charger le morceau et de le jouer
-            widget.load(soundcloudUrl, {
-                auto_play: true,
-                hide_related: true,
-                show_comments: false,
-                visual: false
-            });
-            
-            currentDiscImg = currentDiscData.src;
-            jukebox.classList.add('active');
-            jukebox.style.transform = "scale(1)";
-        } else {
-            console.error("Lien SoundCloud manquant pour : " + fileName);
-        }
+        player.src = currentDiscData.audio;
+        player.play();
+        currentDiscImg = currentDiscData.src;
+        jukebox.classList.add('active');
+        jukebox.style.transform = "scale(1)";
     }
     isDragging = false;
     dragIcon.style.display = 'none';
@@ -257,7 +219,8 @@ window.addEventListener('mouseup', (e) => {
 jukebox.addEventListener('click', () => {
     if (jukebox.classList.contains('active')) {
         ejectDisc();
-        widget.pause(); // On remplace player.pause() par widget.pause()
+        player.pause();
+        player.src = "";
         jukebox.classList.remove('active');
     }
 });
