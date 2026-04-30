@@ -2,32 +2,38 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>AmaiCraft Jukebox</title>
+    <title>AmaiCraft - Music Player</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/minecraftia');
 
-        header img {
-            /* --- POSITIONNEMENT --- */
-            position: absolute;
-            right: 0;   /* Collé au mur de droite */
-            top: 0;
-            bottom: 0;
-            
-            /* --- TAILLE --- */
-            height: 100%;
-            width: auto;
+        :root {
+            --mc-panel: #c6c6c6;
+            --mc-border-light: #ffffff;
+            --mc-border-dark: #555555;
         }
-        /* HEADER */
+
+        body {
+            font-family: 'Minecraftia', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('Leaves.png'); 
+            background-repeat: repeat;
+            background-size: 64px;
+            background-attachment: fixed;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* --- HEADER & NAV (Exactement comme ton accueil) --- */
         header {
             background: rgba(0, 0, 0, 0.8);
             border-bottom: 4px solid #000;
             padding: 20px;
             text-align: center;
-
-                /* --- AJOUT INDISPENSABLE --- */
-            position: relative; /* Sert de repère pour le perroquet */
-            overflow: hidden;    /* Empêche le perroquet de déborder si besoin */
-            min-height: 70px;   /* Ajuste selon la taille de ton texte pour pas que ce soit trop plat */
+            position: relative;
+            min-height: 70px;
         }
 
         header h1 {
@@ -37,7 +43,13 @@
             letter-spacing: 2px;
         }
 
-        /* NAV BAR STYLE BOUTONS MC */
+        header img {
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            height: 100%;
+            width: auto;
+        }
+
         .nav {
             background: rgba(0, 0, 0, 0.6);
             padding: 10px;
@@ -57,136 +69,83 @@
             font-size: 14px;
         }
 
-        .nav a:hover {
-            background: #8b8b8b;
-            border-top-color: #dbdbdb;
-            border-left-color: #dbdbdb;
-        }
-
-
-
-
-
-
-        :root {
-            --mc-gui-panel: #c6c6c6;
-            --mc-gui-button: #7e7e7e;
-            --mc-border-dark: #555555;
-            --mc-border-light: #ffffff;
-        }
-
-        body {
-            background-image: url("Leaves.png");
-            background-size: 64px;
-            background-repeat: repeat;
-            image-rendering: pixelated;
-            font-family: sans-serif; /* Remplace par ta police Minecraft */
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* --- JUKEBOX CENTRAL --- */
-        #jukebox {
-            width: 200px; /* Tu peux augmenter cette valeur si tu le veux encore plus gros */
-            cursor: pointer;
-            transition: transform 0.1s;
-            z-index: 10;
-            image-rendering: pixelated;
-        }
-
-        /* Pour s'assurer qu'il utilise tout l'espace central */
+        /* --- ZONE JUKEBOX CENTRÉE --- */
         #jukebox-container {
-            flex: 1; 
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 300px; /* Force un espace minimum pour ne pas qu'il soit écrasé */
+            position: relative;
         }
-        #jukebox.active { transform: scale(1.1); }
 
-        /* --- INVENTAIRE DES DISQUES --- */
+        #jukebox {
+            width: 200px; /* Plus grand */
+            cursor: pointer;
+            transition: transform 0.1s;
+            image-rendering: pixelated;
+            z-index: 10;
+        }
+
+        #jukebox.active { filter: brightness(1.2); }
+
+        /* --- INVENTAIRE --- */
         #inventory {
-            background: var(--mc-gui-panel);
+            background: var(--mc-panel);
             border: 4px solid #000;
-            box-shadow: inset 4px 4px 0 var(--mc-border-light), inset -4px -4px 0 var(--mc-border-dark);
+            box-shadow: inset 4px 4px 0px var(--mc-border-light), 
+                        inset -4px -4px 0px var(--mc-border-dark);
             padding: 15px;
             display: flex;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 80px; /* Place pour le footer */
             z-index: 20;
+            align-self: center;
         }
 
         .disc {
-            width: 50px;
-            height: 50px;
-            cursor: grab;
+            width: 50px; height: 50px;
             image-rendering: pixelated;
-            user-select: none;
-            -webkit-user-drag: element;
+            cursor: pointer;
         }
 
-        /* --- DISQUE ÉJECTÉ (Animation) --- */
-        .ejected-disc {
-            position: absolute;
-            width: 80px; /* Plus gros ! */
-            pointer-events: none;
-            z-index: 50; /* On s'assure qu'il passe devant le Jukebox */
-            image-rendering: pixelated;
+        /* --- STEVE & ANIMATIONS --- */
+        .steve-animation {
+            position: fixed;
+            bottom: 70px; left: -100px;
+            width: 100px; z-index: 1000;
+            pointer-events: auto; cursor: pointer;
+            animation: walk-around 10s linear infinite;
+            user-select: none; -webkit-user-drag: none;
         }
 
-        .wiki-link {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
+        .jumping { animation: walk-around 10s linear infinite, jump-animation 0.8s ease-in-out !important; }
+
+        @keyframes jump-animation {
+            0%, 100% { bottom: 70px; }
+            50% { bottom: 250px; }
+        }
+
+        @keyframes walk-around {
+            0%, 45% { left: -100px; transform: scaleX(-1); }
+            50%, 95% { left: calc(100% - 100px); transform: scaleX(1); }
+            100% { left: -100px; transform: scaleX(-1); }
+        }
+
+        /* --- AUTRES --- */
+        .drag-cursor { position: fixed; width: 50px; height: 50px; pointer-events: none; z-index: 9999; image-rendering: pixelated; display: none; }
+        .ejected-disc { position: absolute; width: 90px; pointer-events: none; z-index: 5; image-rendering: pixelated; }
         
+        footer {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            padding: 15px; text-align: center; font-size: 12px;
+            background-color: #1a1a1a; color: #aaaaaa; border-top: 4px solid #000; z-index: 2000;
         }
-
-
-        /* Le disque qui suit la souris */
-.drag-cursor {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    pointer-events: none; /* Indispensable pour ne pas gêner le clic sur le jukebox */
-    z-index: 9999;
-    image-rendering: pixelated;
-    display: none; /* Caché par défaut */
-}
-
-/* On désactive le drag natif sur TOUTES les images */
-img {
-    -webkit-user-drag: none;
-    user-select: none;
-    
-}
-
-/* Bloque la sélection et le drag natif sur tout ce qui est interactif */
-.disc, #inventory, #jukebox {
-    user-select: none;           /* Empêche le surlignage bleu */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    
-    -webkit-user-drag: none;     /* Empêche le navigateur de "détacher" l'image */
-    
-    touch-action: none;          /* Empêche le scroll/zoom sur mobile pendant le drag */
-    -webkit-touch-callout: none; /* Empêche le menu contextuel sur iOS */
-}
-
-/* Optionnel : force le curseur sur toute la page pendant le drag pour éviter les changements */
-body.dragging {
-    cursor: grabbing !important;
-}
     </style>
 </head>
 <body>
+
 <header>
-    <h1>AMAICRAFT</h1>
+    <h1>AMAICRAFT - MUSIC PLAYER</h1>
     <img src="parrotparty.gif" alt="Parrot Party">
 </header>
 
@@ -196,20 +155,26 @@ body.dragging {
     <a href="https://www.minecraft.net/fr-fr/minecraft-tips-for-beginners">GUIDES</a>
 </div>
 
-<a href="https://fr.minecraft.wiki/w/Disque" target="_blank" class="wiki-link">Wiki Disques</a>
-
 <div id="jukebox-container">
     <img src="Jukebox.png" id="jukebox" alt="Jukebox">
 </div>
 
 <div id="inventory"></div>
 
+<img src="steverunning.gif" class="steve-animation" alt="Steve running">
+
 <audio id="player" loop></audio>
+
+<footer>
+    Page communautaire Minecraft - Non officielle <br>
+    Copyright &copy; Mojang AB.
+</footer>
 
 <script>
 const jukebox = document.getElementById('jukebox');
 const player = document.getElementById('player');
 const inventory = document.getElementById('inventory');
+const steve = document.querySelector('.steve-animation');
 
 const dragIcon = document.createElement('img');
 dragIcon.className = 'drag-cursor';
@@ -217,23 +182,20 @@ document.body.appendChild(dragIcon);
 
 let isDragging = false;
 let currentDiscData = null;
-let currentDiscImg = null; // Variable bien déclarée ici
+let currentDiscImg = null;
 
 const discNames = ["5", "11", "13", "blocks", "cat", "chirp", "creator", "far", "mall", "mellohi", "otherside", "pigstep", "relic", "stal", "strad", "wait", "ward"];
 
+// Génération disques
 discNames.forEach(name => {
     const img = document.createElement('img');
     img.src = `Discs/${name}.png`;
     img.className = 'disc';
     img.dataset.audio = `Discs/${name}.ogg`;
-    
     img.addEventListener('mousedown', (e) => {
         e.preventDefault();
         isDragging = true;
-        currentDiscData = {
-            audio: img.dataset.audio,
-            src: img.src
-        };
+        currentDiscData = { audio: img.dataset.audio, src: img.src };
         dragIcon.src = img.src;
         dragIcon.style.display = 'block';
         updateDragPosition(e);
@@ -242,12 +204,12 @@ discNames.forEach(name => {
     inventory.appendChild(img);
 });
 
+// Drag & Drop
 window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     updateDragPosition(e);
     const rect = jukebox.getBoundingClientRect();
-    if (e.clientX > rect.left && e.clientX < rect.right && 
-        e.clientY > rect.top && e.clientY < rect.bottom) {
+    if (e.clientX > rect.left && e.clientX < rect.right && e.clientY > rect.top && e.clientY < rect.bottom) {
         jukebox.style.transform = "scale(1.1) rotate(5deg)";
     } else {
         jukebox.style.transform = "scale(1)";
@@ -257,28 +219,25 @@ window.addEventListener('mousemove', (e) => {
 window.addEventListener('mouseup', (e) => {
     if (!isDragging) return;
     const rect = jukebox.getBoundingClientRect();
-    if (e.clientX > rect.left && e.clientX < rect.right && 
-        e.clientY > rect.top && e.clientY < rect.bottom) {
-        
+    if (e.clientX > rect.left && e.clientX < rect.right && e.clientY > rect.top && e.clientY < rect.bottom) {
         player.src = currentDiscData.audio;
         player.play();
-        currentDiscImg = currentDiscData.src; // On mémorise l'image du disque inséré
+        currentDiscImg = currentDiscData.src;
         jukebox.classList.add('active');
     }
     isDragging = false;
     dragIcon.style.display = 'none';
     document.querySelectorAll('.disc').forEach(d => d.style.opacity = "1");
-    jukebox.style.transform = "scale(1)";
 });
 
-// --- LA PARTIE MANQUANTE : LE CLIC POUR ÉJECTER ---
+// Ejection
 jukebox.addEventListener('click', () => {
-    // Si une musique est en cours (on vérifie src ou active)
     if (jukebox.classList.contains('active')) {
-        ejectDisc();           // On lance l'animation
-        player.pause();        // On arrête le son
-        player.src = "";       // On vide la source
-        jukebox.classList.remove('active'); // On remet le jukebox au repos
+        ejectDisc();
+        player.pause();
+        player.src = "";
+        jukebox.classList.remove('active');
+        jukebox.style.transform = "scale(1)";
     }
 });
 
@@ -289,43 +248,34 @@ function updateDragPosition(e) {
 
 function ejectDisc() {
     if (!currentDiscImg) return;
-
     const disc = document.createElement('img');
     disc.src = currentDiscImg;
     disc.className = 'ejected-disc';
-    
     const rect = jukebox.getBoundingClientRect();
-    // On centre le gros disque par rapport au jukebox (80px / 2 = 40)
-    let posX = rect.left + rect.width / 2 - 40; 
+    let posX = rect.left + rect.width / 2 - 45;
     let posY = rect.top;
-    
-    // --- RÉGLAGES DE LA PHYSIQUE ---
-    let velocityY = -7;    // Moins haut (avant c'était -15)
-    let velocityX = (Math.random() - 0.5) * 5; // Moins de dispersion latérale
-    const gravity = 0.2;   // Chute beaucoup plus lente (avant c'était 0.8)
-
+    let velocityY = -6; 
+    let velocityX = (Math.random() - 0.5) * 4;
+    const gravity = 0.15; 
     document.body.appendChild(disc);
 
     function animate() {
-        velocityY += gravity;
-        posX += velocityX;
-        posY += velocityY;
-
-        disc.style.left = posX + 'px';
-        disc.style.top = posY + 'px';
-        
-        // On ralentit aussi la rotation pour que ce soit moins nerveux
-        disc.style.transform = `rotate(${posY * 0.8}deg)`;
-
-        if (posY < window.innerHeight + 100) {
-            requestAnimationFrame(animate);
-        } else {
-            disc.remove();
-        }
+        velocityY += gravity; posX += velocityX; posY += velocityY;
+        disc.style.left = posX + 'px'; disc.style.top = posY + 'px';
+        disc.style.transform = `rotate(${posY * 0.5}deg)`;
+        if (posY < window.innerHeight + 100) requestAnimationFrame(animate);
+        else disc.remove();
     }
     animate();
 }
-</script>
 
+// Steve Jump
+steve.addEventListener('click', () => {
+    if (!steve.classList.contains('jumping')) {
+        steve.classList.add('jumping');
+        setTimeout(() => steve.classList.remove('jumping'), 800);
+    }
+});
+</script>
 </body>
 </html>
