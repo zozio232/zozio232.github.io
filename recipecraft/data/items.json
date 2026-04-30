@@ -1490,7 +1490,31 @@
     {
     "id": "oxeye_daisy",
     "name": "Oxeye Daisy",
-    "category": "Building",
+    "category": "Colored Blocks",
     "icon": "assets/items/oxeye_daisy.png"
+  },
+    {
+    "id": "cornflower",
+    "name": "Cornflower",
+    "category": "Colored Blocks",
+    "icon": "assets/items/conflower.png"
+  },
+    {
+    "id": "cocoa_beans",
+    "name": "Cocoa Beans",
+    "category": "Ingredients",
+    "icon": "assets/items/cocoa_beans.png"
+  },
+    {
+    "id": "poppy",
+    "name": "Poppy",
+    "category": "Colored Blocks",
+    "icon": "assets/items/poppy.png"
+  },
+    {
+    "id": "ink_sac",
+    "name": "Ink Sac",
+    "category": "Ingredients",
+    "icon": "assets/items/ink_sac.png"
   }
 ]
