@@ -1,65 +1,183 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <title>AmaiCraft Music Disc Player - Not Created Yet</title>
-
+    <title>AmaiCraft Jukebox</title>
     <style>
-
-
         :root {
-
             --mc-gui-panel: #c6c6c6;
-
             --mc-gui-button: #7e7e7e;
-
-            --mc-gui-shadow: #555555;
-
-            --mc-gui-light: #ffffff;
-
-            --mc-text-shadow: #3f3f3f;
-
+            --mc-border-dark: #555555;
+            --mc-border-light: #ffffff;
         }
-
-
 
         body {
-
             background-image: url("Leaves.png");
-
             background-size: 64px;
-
             background-repeat: repeat;
-
             image-rendering: pixelated;
-
-            font-family: 'Minecraft', 'Segoe UI', sans-serif;
-
-            color: white;
-
+            font-family: sans-serif; /* Remplace par ta police Minecraft */
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        /* --- JUKEBOX CENTRAL --- */
+        #jukebox-container {
+            flex: 1;
+            display: flex;
             justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
 
-            padding: 40px;
+        #jukebox {
+            width: 150px;
+            cursor: pointer;
+            transition: transform 0.1s;
+            z-index: 10;
+            image-rendering: pixelated;
+        }
 
+        #jukebox.active { transform: scale(1.1); }
+
+        /* --- INVENTAIRE DES DISQUES --- */
+        #inventory {
+            background: var(--mc-gui-panel);
+            border: 4px solid #000;
+            box-shadow: inset 4px 4px 0 var(--mc-border-light), inset -4px -4px 0 var(--mc-border-dark);
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            z-index: 20;
+        }
+
+        .disc {
+            width: 50px;
+            height: 50px;
+            cursor: grab;
+            image-rendering: pixelated;
+            user-select: none;
+            -webkit-user-drag: element;
+        }
+
+        /* --- DISQUE ÉJECTÉ (Animation) --- */
+        .ejected-disc {
+            position: absolute;
+            width: 40px;
+            pointer-events: none;
+            z-index: 5;
+            image-rendering: pixelated;
+        }
+
+        .wiki-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
         }
     </style>
-
 </head>
-
 <body>
-<a href="https://fr.minecraft.wiki/w/Disque" target="_blank" style="color: white; text-decoration: underline;">Disques</a>
-L'idée ici est de Mettre 
-<img src ="Jukebox.png">
-au centre de l'écran
-et un petit menu avec tout les disques dans /Discs
-on peut prendre un disque, le mettre dans le jukebox, la musique associée à ce disque va jouer en boucle
-l'utilisateur peut cliquer sur le jukebox, ce qui va jeter le disque (avec gravité) en bas de l'écran
-</body>
 
+<a href="https://fr.minecraft.wiki/w/Disque" target="_blank" class="wiki-link">Wiki Disques</a>
+
+<div id="jukebox-container">
+    <img src="Jukebox.png" id="jukebox" alt="Jukebox">
+</div>
+
+<div id="inventory">
+    <img src="Discs/13.png" class="disc" draggable="true" data-audio="Discs/13.mp3" id="disc-13">
+    <img src="Discs/cat.png" class="disc" draggable="true" data-audio="Discs/cat.mp3" id="disc-cat">
+    <img src="Discs/blocks.png" class="disc" draggable="true" data-audio="Discs/blocks.mp3" id="disc-blocks">
+    <img src="Discs/otherside.png" class="disc" draggable="true" data-audio="Discs/otherside.mp3" id="disc-otherside">
+</div>
+
+<audio id="player" loop></audio>
+
+<script>
+    const jukebox = document.getElementById('jukebox');
+    const player = document.getElementById('player');
+    const discs = document.querySelectorAll('.disc');
+    let currentDiscImg = null;
+
+    // --- 1. GESTION DU DRAG & DROP ---
+    discs.forEach(disc => {
+        disc.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('audio', disc.dataset.audio);
+            e.dataTransfer.setData('imgSrc', disc.src);
+        });
+    });
+
+    jukebox.addEventListener('dragover', (e) => e.preventDefault());
+
+    jukebox.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const audioSrc = e.dataTransfer.getData('audio');
+        const imgSrc = e.dataTransfer.getData('imgSrc');
+
+        if (audioSrc) {
+            playMusic(audioSrc, imgSrc);
+        }
+    });
+
+    // --- 2. FONCTION JOUER ---
+    function playMusic(src, imgSrc) {
+        player.src = src;
+        player.play();
+        currentDiscImg = imgSrc;
+        jukebox.classList.add('active');
+        console.log("Lecture de : " + src);
+    }
+
+    // --- 3. ÉJECTION DU DISQUE ---
+    jukebox.addEventListener('click', () => {
+        if (!player.paused && currentDiscImg) {
+            ejectDisc();
+            player.pause();
+            player.src = "";
+            jukebox.classList.remove('active');
+        }
+    });
+
+    function ejectDisc() {
+        const disc = document.createElement('img');
+        disc.src = currentDiscImg;
+        disc.className = 'ejected-disc';
+        
+        // Position initiale au centre du jukebox
+        const rect = jukebox.getBoundingClientRect();
+        let posX = rect.left + rect.width / 2 - 20;
+        let posY = rect.top;
+        let velocityY = -10; // Impulsion vers le haut
+        let velocityX = (Math.random() - 0.5) * 10; // Direction aléatoire
+        const gravity = 0.6;
+
+        document.body.appendChild(disc);
+
+        function animate() {
+            velocityY += gravity;
+            posX += velocityX;
+            posY += velocityY;
+
+            disc.style.left = posX + 'px';
+            disc.style.top = posY + 'px';
+            disc.style.transform = `rotate(${posY}deg)`; // Rotation stylée
+
+            if (posY < window.innerHeight + 100) {
+                requestAnimationFrame(animate);
+            } else {
+                disc.remove();
+            }
+        }
+        animate();
+    }
+</script>
+
+</body>
 </html>
