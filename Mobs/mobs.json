@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Creeper",
+    "category": "Hostile",
+    "image": "mob/hostile/creeper.png",
+    "sounds": [
+      "mob/sounds/creeper1.ogg",
+      "mob/sounds/creeper2.mp3",
+      "mob/sounds/creeper3.ogg"
+    ]
+  },
+  {
+    "name": "Cow",
+    "category": "Passive",
+    "image": "mob/passive/cow.png",
+    "sounds": [
+      "mob/sounds/cow1.ogg",
+      "mob/sounds/cow2.ogg"
+    ]
+  }
+]

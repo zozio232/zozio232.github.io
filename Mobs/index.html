@@ -204,74 +204,69 @@
 </div>
 <main class="container">
     <div class="tabs">
-        <button class="tab-btn" onclick="openFolder('passive')">PASSIVE</button>
-        <button class="tab-btn" onclick="openFolder('neutral')">NEUTRAL</button>
-        <button class="tab-btn" onclick="openFolder('hostile')">HOSTILE</button>
-        <button class="tab-btn" onclick="openFolder('fool')">FOOL</button>
+        <button class="tab-btn" onclick="openFolder('Passive')">PASSIVE</button>
+        <button class="tab-btn" onclick="openFolder('Neutral')">NEUTRAL</button>
+        <button class="tab-btn" onclick="openFolder('Hostile')">HOSTILE</button>
+        <button class="tab-btn" onclick="openFolder('Fool')">FOOL</button>
     </div>
 
-    <div id="passive" class="folder-content">
-        <div class="mob-card" onclick="playMobSound('cow', this)">
-            <img src="mobs/cow.png" alt="Cow">
-            <p>Cow</p>
-        </div>
-        </div>
-
-    <div id="neutral" class="folder-content" style="display:none;">
-        <div class="mob-card" onclick="playMobSound('enderman', this)">
-            <img src="mobs/enderman.png" alt="Enderman">
-            <p>Enderman</p>
-        </div>
-    </div>
-
-    <div id="hostile" class="folder-content" style="display:none;">
-        <div class="mob-card" onclick="playMobSound('creeper', this)">
-            <img src="mobs/creeper.png" alt="Creeper">
-            <p>Creeper</p>
-        </div>
-    </div>
-
-    <div id="fool" class="folder-content" style="display:none;">
+    <div id="mob-container" class="folder-content">
         </div>
 </main>
-
 <footer>
     <strong>Page communautaire Minecraft</strong> — Site non officiel<br>
     Ce site n'est pas affilié à Mojang AB.
 </footer>
 </body>
 <script>
-    // Fonction pour changer de dossier
-    function openFolder(folderName) {
-        // Masquer tous les dossiers
-        const folders = document.querySelectorAll('.folder-content');
-        folders.forEach(f => f.style.display = 'none');
+    let allMobs = [];
 
-        // Afficher le dossier sélectionné
-        document.getElementById(folderName).style.display = 'grid';
+    // 1. Charger les données du JSON au démarrage
+    fetch('mobs.json')
+        .then(response => response.json())
+        .then(data => {
+            allMobs = data;
+            openFolder('Passive'); // Affiche les passifs par défaut
+        });
+
+    function openFolder(category) {
+        const container = document.getElementById('mob-container');
+        container.innerHTML = ''; // On vide l'affichage actuel
+
+        // 2. Filtrer les mobs selon la catégorie du bouton cliqué
+        const filteredMobs = allMobs.filter(m => m.category.toLowerCase() === category.toLowerCase());
+
+        filteredMobs.forEach(mob => {
+            // Création de la carte du mob
+            const card = document.createElement('div');
+            card.className = 'mob-card';
+            card.innerHTML = `
+                <img src="${mob.image}" alt="${mob.name}">
+                <p>${mob.name}</p>
+            `;
+
+            // Gestion du clic pour le son et l'effet rouge
+            card.onclick = () => {
+                playRandomSound(mob.sounds, card);
+            };
+
+            container.appendChild(card);
+        });
     }
 
-    // Fonction pour jouer un son au hasard
-    function playMobSound(mobName, element) {
-        // Liste des sons par mob (à adapter selon tes fichiers réels)
-        // Exemple : mob/hostile/creeper1.mp3, creeper2.mp3...
-        const soundCount = 3; // Supposons que tu as 3 sons par mob
-        const randomIndex = Math.floor(Math.random() * soundCount) + 1;
-        
-        // On récupère le type (parent) pour le chemin du dossier
-        const type = element.parentElement.id;
-        const audioPath = `mob/${type}/${mobName}${randomIndex}.mp3`;
-        
-        const audio = new Audio(audioPath);
-        
-        // Appliquer le filtre rouge
+    function playRandomSound(soundList, element) {
+        if (soundList.length === 0) return;
+
+        // Choisir un son au hasard dans la liste du JSON
+        const randomSound = soundList[Math.floor(Math.random() * soundList.length)];
+        const audio = new Audio(randomSound);
+
+        // Effet visuel
         element.classList.add('playing');
-        
         audio.play();
 
-        // Retirer le filtre après 500ms (durée du "flash")
+        // On retire le filtre rouge quand le son finit ou après un court délai
         audio.onended = () => element.classList.remove('playing');
-        // Sécurité si le son est long :
         setTimeout(() => element.classList.remove('playing'), 500);
     }
 </script>
