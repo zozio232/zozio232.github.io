@@ -175,7 +175,17 @@ let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('yt-player', {
         height: '0', width: '0', videoId: '',
-        playerVars: { 'autoplay': 0, 'controls': 0 }
+        playerVars: { 
+            'autoplay': 1, 
+            'controls': 0,
+            'origin': window.location.origin // Aide YouTube à accepter ton site
+        },
+        events: {
+            'onReady': (event) => {
+                event.target.unMute(); // TRÈS IMPORTANT
+                event.target.setVolume(100);
+            }
+        }
     });
 }
 const dragIcon = document.createElement('img');
@@ -243,8 +253,8 @@ window.addEventListener('mouseup', (e) => {
 jukebox.addEventListener('click', () => {
     if (jukebox.classList.contains('active')) {
         ejectDisc();
-        player.pause();
-        player.src = "";
+        // CORRECT : On utilise stopVideo() de l'API YouTube
+        if (player) player.stopVideo();
         jukebox.classList.remove('active');
     }
 });
