@@ -11,32 +11,32 @@
 
 
 
-/* --- MODIFICATIONS STEVE --- */
+/* ---  STEVE --- */
 .steve-animation {
     position: fixed;
     bottom: 70px;
     left: -100px;
     width: 100px;
     z-index: 1000;
-    /* On change 'none' en 'auto' pour pouvoir cliquer dessus ! */
+
     pointer-events: auto; 
     cursor: pointer;
     animation: walk-around 10s linear infinite;
-    transition: transform 0.1s; /* Petit feedback au clic */
+    transition: transform 0.1s;
 
     user-select: none;
     -webkit-user-drag: none;
     touch-action: manipulation;
 }
 
-/* L'animation du bond (Axe Y uniquement) */
+
 @keyframes jump-animation {
     0% { bottom: 70px; animation-timing-function: ease-out; }
     50% { bottom: 250px; animation-timing-function: ease-in; } /* Hauteur du saut */
     100% { bottom: 70px; }
 }
 
-/* Classe qu'on ajoutera en JS */
+
 .jumping {
     animation: walk-around 10s linear infinite, jump-animation 0.8s ease-in-out !important;
 }
@@ -63,24 +63,24 @@
 }
 
 footer {
-    position: fixed; /* Il est fixé par rapport à la fenêtre */
-    bottom: 0;       /* Collé tout en bas */
-    left: 0;         /* Aligné à gauche */
-    width: 100%;     /* Prend toute la largeur */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     
-    padding: 15px;   /* Un peu moins de padding pour gagner de la place */
+    padding: 15px;
     text-align: center;
     font-size: 12px;
     background-color: #1a1a1a;
     color: #aaaaaa;
     border-top: 4px solid #000;
-    z-index: 2000;   /* Passe au-dessus de Steve si besoin */
+    z-index: 2000;
 }
 
 
 :root {
-    --mc-bg: #313233; /* Gris foncé du fond wiki */
-    --mc-panel: #c6c6c6; /* Gris clair des menus Minecraft */
+    --mc-bg: #313233;
+    --mc-panel: #c6c6c6;
     --mc-border-light: #ffffff;
     --mc-border-dark: #555555;
     --mc-button-hover: #7a7a7a;
@@ -90,7 +90,7 @@ footer {
 body {
     font-family: 'Minecraftia', 'Segoe UI', Arial, sans-serif;
     margin: 0;
-    /* Texture de fond : On garde tes feuilles de cerisier ou on met de la Dirt/Stone */
+    /* Texture de fond */
     background-image: url('cherry_leaves.png'); 
     background-repeat: repeat;
     background-size: 64px;
@@ -104,12 +104,12 @@ header img {
     /* --- POSITIONNEMENT --- */
     position: absolute;
     right: 0;   /* Collé au mur de droite */
-    top: 0;     /* Collé en haut */
-    bottom: 0;  /* Collé en bas */
+    top: 0;
+    bottom: 0;
     
     /* --- TAILLE --- */
-    height: 100%; /* Prend toute la hauteur du header */
-    width: auto;  /* Garde ses proportions pour ne pas être écrasé */
+    height: 100%;
+    width: auto;
 }
 /* HEADER */
 header {
