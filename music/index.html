@@ -154,23 +154,32 @@
 
 <div id="inventory"></div>
 
-<audio id="player" loop></audio>
+<div id="yt-player"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-// --- LE MÊME SCRIPT QUE TOUT À L'HEURE (IL ÉTAIT PARFAIT) ---
 const jukebox = document.getElementById('jukebox');
-const player = document.getElementById('player');
 const inventory = document.getElementById('inventory');
 
-const dragIcon = document.createElement('img');
-dragIcon.className = 'drag-cursor';
-document.body.appendChild(dragIcon);
+// Dictionnaire des IDs YouTube
+const ytIds = {
+    "5": "Qtf8YFw8iZg", "11": "L6pY_H03K1M", "13": "1_vR_Lp_k64",
+    "blocks": "599_u_pBq_U", "cat": "fC7_H-0O3Lg", "chirp": "mF28fN_7Bms",
+    "creator": "Qtf8YFw8iZg", "far": "j96p7A22v_k", "mall": "5w2Y9Z7qKIs",
+    "mellohi": "O82X3xUj2oM", "otherside": "kC3PlG_0-7s", "pigstep": "f9p_8n5V270",
+    "relic": "8XmI6S-kIuQ", "stal": "9_oYAnrQWlk", "strad": "v6GId-oG6yM",
+    "wait": "m_T9-2r0v3Y", "ward": "E_e_g77S17w"
+};
 
-let isDragging = false;
-let currentDiscData = null;
-let currentDiscImg = null;
+let player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('yt-player', {
+        height: '0', width: '0', videoId: '',
+        playerVars: { 'autoplay': 0, 'controls': 0 }
+    });
+}
 
-const discNames = ["5", "11", "13", "blocks", "cat", "chirp", "creator", "far", "mall", "mellohi", "otherside", "pigstep", "relic", "stal", "strad", "wait", "ward"];
+const discNames = Object.keys(ytIds);
 
 discNames.forEach(name => {
     const img = document.createElement('img');
@@ -205,11 +214,14 @@ window.addEventListener('mouseup', (e) => {
     if (!isDragging) return;
     const rect = jukebox.getBoundingClientRect();
     if (e.clientX > rect.left && e.clientX < rect.right && e.clientY > rect.top && e.clientY < rect.bottom) {
-        player.src = currentDiscData.audio;
-        player.play();
-        currentDiscImg = currentDiscData.src;
-        jukebox.classList.add('active');
-        jukebox.style.transform = "scale(1)";
+        const videoId = ytIds[currentDiscData.audio.split('/').pop().replace('.ogg', '')];
+        if (videoId && player) {
+            player.loadVideoById(videoId);
+            player.playVideo();
+            currentDiscImg = currentDiscData.src;
+            jukebox.classList.add('active');
+            jukebox.style.transform = "scale(1)";
+        }
     }
     isDragging = false;
     dragIcon.style.display = 'none';
@@ -219,8 +231,7 @@ window.addEventListener('mouseup', (e) => {
 jukebox.addEventListener('click', () => {
     if (jukebox.classList.contains('active')) {
         ejectDisc();
-        player.pause();
-        player.src = "";
+        if (player) player.stopVideo();
         jukebox.classList.remove('active');
     }
 });
