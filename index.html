@@ -21,9 +21,6 @@
     z-index: 1000;
     pointer-events: none; /* Pour ne pas gêner le clic sur les liens */
     animation: walk-around 10s linear infinite;
-
-    user-select: none;
-    -webkit-user-drag: none;
 }
 
 @keyframes walk-around {
@@ -45,17 +42,6 @@
         left: -100px;
         transform: scaleX(-1); /* Se retourne pour recommencer */
     }
-}
-/* L'animation du bond */
-@keyframes jump-animation {
-    0% { transform: translateY(0) scaleX(var(--direction, 1)); }
-    50% { transform: translateY(-100px) scaleX(var(--direction, 1)); } /* Il monte de 100px */
-    100% { transform: translateY(0) scaleX(var(--direction, 1)); }
-}
-
-.jump {
-    /* "cubic-bezier" donne l'effet de pesanteur smooth (accélère en retombant) */
-    animation: jump-animation 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
 footer {
@@ -295,28 +281,4 @@ footer {
 </footer>
 
 </body>
-<script>
-    const steve = document.querySelector('.steve-animation');
-
-    steve.addEventListener('click', () => {
-        if (!steve.classList.contains('jump')) {
-            // On récupère le sens actuel de Steve via le style calculé
-            const style = window.getComputedStyle(steve);
-            const matrix = style.transform;
-            
-            // On stocke la direction (gauche ou droite) dans une variable CSS
-            if (matrix.includes('-1')) {
-                steve.style.setProperty('--direction', '-1');
-            } else {
-                steve.style.setProperty('--direction', '1');
-            }
-
-            steve.classList.add('jump');
-            
-            setTimeout(() => {
-                steve.classList.remove('jump');
-            }, 600); // 600ms pour correspondre au CSS
-        }
-    });
-</script>
 </html>
