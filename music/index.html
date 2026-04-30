@@ -139,11 +139,11 @@
 
 <header>
     <h1>AMAICRAFT</h1>
-    <img src="parrotparty.gif" alt="Parrot Party">
+    <img src="../parrotparty.gif" alt="Parrot Party">
 </header>
 
 <div class="nav">
-    <a href="index.html">ACCUEIL</a>
+    <a href="../index.html">ACCUEIL</a>
     <a href="https://minecraft.wiki">WIKI</a>
     <a href="https://www.minecraft.net/fr-fr/minecraft-tips-for-beginners">GUIDES</a>
 </div>
@@ -209,6 +209,7 @@ window.addEventListener('mouseup', (e) => {
         player.play();
         currentDiscImg = currentDiscData.src;
         jukebox.classList.add('active');
+        jukebox.style.transform = "scale(1)";
     }
     isDragging = false;
     dragIcon.style.display = 'none';
