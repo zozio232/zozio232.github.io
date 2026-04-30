@@ -69,9 +69,9 @@
         /* --- DISQUE ÉJECTÉ (Animation) --- */
         .ejected-disc {
             position: absolute;
-            width: 40px;
+            width: 80px; /* Plus gros ! */
             pointer-events: none;
-            z-index: 5;
+            z-index: 50; /* On s'assure qu'il passe devant le Jukebox */
             image-rendering: pixelated;
         }
 
@@ -138,13 +138,13 @@ const jukebox = document.getElementById('jukebox');
 const player = document.getElementById('player');
 const inventory = document.getElementById('inventory');
 
-// On crée un élément unique qui servira de "curseur" pendant le drag
 const dragIcon = document.createElement('img');
 dragIcon.className = 'drag-cursor';
 document.body.appendChild(dragIcon);
 
 let isDragging = false;
 let currentDiscData = null;
+let currentDiscImg = null; // Variable bien déclarée ici
 
 const discNames = ["5", "11", "13", "blocks", "cat", "chirp", "creator", "far", "mall", "mellohi", "otherside", "pigstep", "relic", "stal", "strad", "wait", "ward"];
 
@@ -154,31 +154,24 @@ discNames.forEach(name => {
     img.className = 'disc';
     img.dataset.audio = `Discs/${name}.ogg`;
     
-    // Quand on appuie sur la souris
     img.addEventListener('mousedown', (e) => {
+        e.preventDefault();
         isDragging = true;
         currentDiscData = {
             audio: img.dataset.audio,
             src: img.src
         };
-        
-        // On prépare l'icône qui suit la souris
         dragIcon.src = img.src;
         dragIcon.style.display = 'block';
         updateDragPosition(e);
-        
         img.style.opacity = "0.5";
     });
-
     inventory.appendChild(img);
 });
 
-// Suivi de la souris
 window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     updateDragPosition(e);
-
-    // Check si on survole le jukebox
     const rect = jukebox.getBoundingClientRect();
     if (e.clientX > rect.left && e.clientX < rect.right && 
         e.clientY > rect.top && e.clientY < rect.bottom) {
@@ -188,26 +181,32 @@ window.addEventListener('mousemove', (e) => {
     }
 });
 
-// Quand on relâche
 window.addEventListener('mouseup', (e) => {
     if (!isDragging) return;
-    
     const rect = jukebox.getBoundingClientRect();
-    // Si on lâche au-dessus du jukebox
     if (e.clientX > rect.left && e.clientX < rect.right && 
         e.clientY > rect.top && e.clientY < rect.bottom) {
         
         player.src = currentDiscData.audio;
         player.play();
-        currentDiscImg = currentDiscData.src; // Pour l'éjection
+        currentDiscImg = currentDiscData.src; // On mémorise l'image du disque inséré
         jukebox.classList.add('active');
     }
-
-    // Reset
     isDragging = false;
     dragIcon.style.display = 'none';
     document.querySelectorAll('.disc').forEach(d => d.style.opacity = "1");
     jukebox.style.transform = "scale(1)";
+});
+
+// --- LA PARTIE MANQUANTE : LE CLIC POUR ÉJECTER ---
+jukebox.addEventListener('click', () => {
+    // Si une musique est en cours (on vérifie src ou active)
+    if (jukebox.classList.contains('active')) {
+        ejectDisc();           // On lance l'animation
+        player.pause();        // On arrête le son
+        player.src = "";       // On vide la source
+        jukebox.classList.remove('active'); // On remet le jukebox au repos
+    }
 });
 
 function updateDragPosition(e) {
@@ -215,41 +214,44 @@ function updateDragPosition(e) {
     dragIcon.style.top = (e.clientY - 25) + 'px';
 }
 
-// Garde ta fonction ejectDisc() d'avant ici...
+function ejectDisc() {
+    if (!currentDiscImg) return;
 
-    function ejectDisc() {
-        const disc = document.createElement('img');
-        disc.src = currentDiscImg;
-        disc.className = 'ejected-disc';
+    const disc = document.createElement('img');
+    disc.src = currentDiscImg;
+    disc.className = 'ejected-disc';
+    
+    const rect = jukebox.getBoundingClientRect();
+    // On centre le gros disque par rapport au jukebox (80px / 2 = 40)
+    let posX = rect.left + rect.width / 2 - 40; 
+    let posY = rect.top;
+    
+    // --- RÉGLAGES DE LA PHYSIQUE ---
+    let velocityY = -7;    // Moins haut (avant c'était -15)
+    let velocityX = (Math.random() - 0.5) * 5; // Moins de dispersion latérale
+    const gravity = 0.2;   // Chute beaucoup plus lente (avant c'était 0.8)
+
+    document.body.appendChild(disc);
+
+    function animate() {
+        velocityY += gravity;
+        posX += velocityX;
+        posY += velocityY;
+
+        disc.style.left = posX + 'px';
+        disc.style.top = posY + 'px';
         
-        const rect = jukebox.getBoundingClientRect();
-        let posX = rect.left + rect.width / 2 - 20;
-        let posY = rect.top + 20;
-        
-        // Physique du saut
-        let velocityY = -12; // Force vers le haut
-        let velocityX = (Math.random() - 0.5) * 8; // Dispersion gauche/droite
-        const gravity = 0.5;
+        // On ralentit aussi la rotation pour que ce soit moins nerveux
+        disc.style.transform = `rotate(${posY * 0.8}deg)`;
 
-        document.body.appendChild(disc);
-
-        function animate() {
-            velocityY += gravity;
-            posX += velocityX;
-            posY += velocityY;
-
-            disc.style.left = posX + 'px';
-            disc.style.top = posY + 'px';
-            disc.style.transform = `rotate(${posY * 2}deg)`;
-
-            if (posY < window.innerHeight + 100) {
-                requestAnimationFrame(animate);
-            } else {
-                disc.remove();
-            }
+        if (posY < window.innerHeight + 100) {
+            requestAnimationFrame(animate);
+        } else {
+            disc.remove();
         }
-        animate();
     }
+    animate();
+}
 </script>
 
 </body>
