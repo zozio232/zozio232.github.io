@@ -1,4 +1,10 @@
 [
+    {
+    "id": "shulker_shell",
+    "name": "Shulker Shell",
+    "icon": "assets/items/shulker_shell.png",
+    "recipes": null
+  },
   {
     "id": "obsidian",
     "name": "Obsidian",
@@ -1405,5 +1411,12 @@
     "name": "Iron Chain",
     "category": "Building",
     "icon": "assets/items/iron_chain.png"
+
+  },
+  {
+    "id": "compass",
+    "name": "Compass",
+    "icon": "assets/items/compass.gif",
+    "recipes": null
   }
 ]
