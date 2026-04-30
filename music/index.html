@@ -96,81 +96,74 @@
 <audio id="player" loop></audio>
 
 <script>
-    const jukebox = document.getElementById('jukebox');
-    const player = document.getElementById('player');
-    const inventory = document.getElementById('inventory');
+const jukebox = document.getElementById('jukebox');
+const player = document.getElementById('player');
+const inventory = document.getElementById('inventory');
 
-    // Ta liste de disques basée sur ton image
-    const discNames = [
-        "5", "11", "13", "blocks", "cat", "chirp", "creator", "far", 
-        "mall", "mellohi", "otherside", "pigstep", "relic", "stal", 
-        "strad", "wait", "ward"
-    ];
+// Liste corrigée selon tes fichiers
+const discNames = [
+    "5", "11", "13", "blocks", "cat", "chirp", "creator", "far", 
+    "lava_chicken", "mall", "mellohi", "otherside", "pigstep", 
+    "precipire", "relic", "stal", "strad", "tears", "wait", "ward"
+];
 
-    let currentDiscImg = null;
+// Création d'une image invisible pour "tromper" le navigateur
+const hiddenImg = new Image();
+hiddenImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-    // --- 1. GÉNÉRATION AUTOMATIQUE DES DISQUES ---
-    discNames.forEach(name => {
-        const img = document.createElement('img');
-        img.src = `Discs/${name}.png`;
-        img.className = 'disc';
-        img.draggable = true;
-        img.dataset.audio = `Discs/${name}.mp3`;
+discNames.forEach(name => {
+    const img = document.createElement('img');
+    img.src = `Discs/${name}.png`;
+    img.className = 'disc';
+    img.draggable = true;
+    img.dataset.audio = `Discs/${name}.mp3`;
+    
+    img.addEventListener('dragstart', (e) => {
+        // On stocke les infos
+        e.dataTransfer.setData('audio', img.dataset.audio);
+        e.dataTransfer.setData('imgSrc', img.src);
         
-        // Empêche le comportement par défaut du drag d'image
-        img.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('audio', img.dataset.audio);
-            e.dataTransfer.setData('imgSrc', img.src);
-            
-            // OPTIONNEL : On peut forcer l'image fantôme à être l'image elle-même 
-            // pour éviter l'effet "fond blanc" de certains navigateurs
-            e.dataTransfer.setDragImage(img, 25, 25); 
-        });
-
-        inventory.appendChild(img);
-    });
-
-    // --- 2. GESTION DU JUKEBOX ---
-    jukebox.addEventListener('dragover', (e) => {
-        e.preventDefault(); // Autorise le dépôt
-        jukebox.style.filter = "brightness(1.2)";
-    });
-
-    jukebox.addEventListener('dragleave', () => {
-        jukebox.style.filter = "none";
-    });
-
-    jukebox.addEventListener('drop', (e) => {
-        e.preventDefault();
-        jukebox.style.filter = "none";
+        // --- LA MAGIE EST ICI ---
+        // On remplace le fantôme du PNG par l'image invisible
+        e.dataTransfer.setDragImage(hiddenImg, 0, 0);
         
-        const audioSrc = e.dataTransfer.getData('audio');
-        const imgSrc = e.dataTransfer.getData('imgSrc');
-
-        if (audioSrc) {
-            player.src = audioSrc;
-            player.play();
-            currentDiscImg = imgSrc;
-            jukebox.classList.add('active');
-            
-            // Petit effet de vibration au dépôt
-            jukebox.animate([
-                { transform: 'scale(1)' },
-                { transform: 'scale(1.1)' },
-                { transform: 'scale(1)' }
-            ], { duration: 200 });
-        }
+        // On change le curseur pour montrer qu'on porte quelque chose
+        img.style.opacity = "0.4";
     });
 
-    // --- 3. ÉJECTION (LE BOND) ---
-    jukebox.addEventListener('click', () => {
-        if (!player.paused && currentDiscImg) {
-            ejectDisc();
-            player.pause();
-            player.src = "";
-            jukebox.classList.remove('active');
-        }
+    img.addEventListener('dragend', () => {
+        img.style.opacity = "1";
     });
+
+    inventory.appendChild(img);
+});
+
+// Gestion du Jukebox (inchangée mais assure-toi d'avoir ces events)
+jukebox.addEventListener('dragover', (e) => {
+    e.preventDefault(); 
+    jukebox.style.transform = "scale(1.1)";
+});
+
+jukebox.addEventListener('dragleave', () => {
+    jukebox.style.transform = "scale(1)";
+});
+
+jukebox.addEventListener('drop', (e) => {
+    e.preventDefault();
+    jukebox.style.transform = "scale(1)";
+    
+    const audioSrc = e.dataTransfer.getData('audio');
+    const imgSrc = e.dataTransfer.getData('imgSrc');
+
+    if (audioSrc) {
+        player.src = audioSrc;
+        player.play();
+        currentDiscImg = imgSrc;
+        jukebox.classList.add('active');
+    }
+});
+
+// ... garde ta fonction ejectDisc() ici ...
 
     function ejectDisc() {
         const disc = document.createElement('img');
