@@ -1404,7 +1404,21 @@
     "id": "bone_meal",
     "name": "Bone Meal",
     "category": "Ingredients",
-    "icon": "assets/items/bone_meal.png"
+    "icon": "assets/items/bone_meal.png",
+    "recipes":[
+    [
+      [null, null, null],
+      [null, "bone", null],
+      [null, null, null]
+    ]
+    ],
+    "obtain":3
+  },
+      {
+    "id": "bone",
+    "name": "Bone",
+    "category": "Ingredients",
+    "icon": "assets/items/bone.png"
   },
   {
     "id": "gravel",
