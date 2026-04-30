@@ -48,7 +48,7 @@ function autoGenerateWood(baseData) {
         { id: "lime_dye", name: "Lime Dye", m: ["green_dye", "white_dye"] },
         { id: "pink_dye", name: "Pink Dye", r: ["peony"], m: ["red_dye", "white_dye"] },
         { id: "gray_dye", name: "Gray Dye", m: ["black_dye", "white_dye"] },
-        { id: "light_gray_dye", name: "Light Gray Dye", r: ["azure_bluet"], m: ["gray_dye", "white_dye"] },
+        { id: "light_gray_dye", name: "Light Gray Dye", r: ["oxeye_daisy"], m: ["gray_dye", "white_dye"] },
         { id: "cyan_dye", name: "Cyan Dye", m: ["blue_dye", "green_dye"] },
         { id: "purple_dye", name: "Purple Dye", m: ["blue_dye", "red_dye"] },
         { id: "blue_dye", name: "Blue Dye", r: ["cornflower"] },
