@@ -160,8 +160,30 @@
 <script>
 // --- LE MÊME SCRIPT QUE TOUT À L'HEURE (IL ÉTAIT PARFAIT) ---
 const jukebox = document.getElementById('jukebox');
-const player = document.getElementById('player');
 const inventory = document.getElementById('inventory');
+const iframeElement = document.getElementById('sc-player');
+const widget = SC.Widget(iframeElement); // C'est lui qui va remplacer 'player'
+
+// On crée un dictionnaire pour lier tes fichiers OGG aux liens SoundCloud
+const scLinks = {
+    "5": "https://soundcloud.com/official-minecraft/track-5",
+    "11": "https://soundcloud.com/c418/11a",
+    "13": "https://soundcloud.com/c418/13a",
+    "blocks": "https://soundcloud.com/c418/blocks",
+    "cat": "https://soundcloud.com/c418/cat",
+    "chirp": "https://soundcloud.com/c418/chirp",
+    "creator": "https://soundcloud.com/lena-raine/creator",
+    "far": "https://soundcloud.com/c418/far",
+    "mall": "https://soundcloud.com/c418/mall",
+    "mellohi": "https://soundcloud.com/c418/mellohi",
+    "otherside": "https://soundcloud.com/lena-raine/otherside",
+    "pigstep": "https://soundcloud.com/lena-raine/pigstep",
+    "relic": "https://soundcloud.com/aaroncherof/relic",
+    "stal": "https://soundcloud.com/c418/stal",
+    "strad": "https://soundcloud.com/c418/strad",
+    "wait": "https://soundcloud.com/c418/wait",
+    "ward": "https://soundcloud.com/c418/ward"
+};
 
 const dragIcon = document.createElement('img');
 dragIcon.className = 'drag-cursor';
