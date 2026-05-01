@@ -138,6 +138,99 @@
             user-select: none;
             -webkit-user-select: none;
         }
+
+        .nav { position: relative; } /* Important pour le bouton à gauche */
+
+        #settings-btn {
+            position: absolute;
+            left: 10px;
+        }
+
+        /* Look du slider (Gris foncé comme ton image) */
+        .mc-slider-container {
+            position: relative;
+            width: 300px;
+            height: 40px;
+            background: #404040; /* Gris foncé */
+            border: 2px solid #000;
+        }
+        /* LE CURSEUR : Le petit rectangle gris avec bordure blanche (Image 1) */
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px; /* Un peu plus fin pour coller à l'image */
+            height: 36px;
+            background: rgb(163, 163, 163); /* Gris clair pour le centre */
+            border: 2px solid #000; /* La bordure noire extérieure */
+            
+            /* L'effet de relief blanc/gris que tu as sur ton zoom */
+            box-shadow: 
+                inset 2px 2px 0px #ffffff,   /* Ligne blanche en haut à gauche */
+                inset -2px -2px 0px #555555; /* Ligne grise foncée en bas à droite */
+            
+            cursor: pointer;
+        }
+        #volume-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            cursor: pointer;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 2;
+            margin: 0;
+        }
+
+        #close-settings {
+            margin-top: 20px;
+            width: 310px; /* Aligné avec la barre de volume */
+            padding: 10px;
+            background: #555; /* Gris moyen Minecraft */
+            color: white;
+            font-family: 'Minecraftia', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            /* L'effet de relief Minecraft */
+            border: 2px solid #000;
+            border-top-color: #ababab;
+            border-left-color: #ababab;
+        }
+
+        #close-settings:hover {
+            background: #666; /* Un peu plus clair au survol */
+        }
+
+        #close-settings:active {
+            /* Effet d'enfoncement quand on clique */
+            border-top-color: #000;
+            border-left-color: #000;
+            background: #444;
+        }
+        /* LE TEXTE : Centré par-dessus avec l'ombre portée (Image 2) */
+        .mc-slider-label {
+            position: absolute;
+            width: 100%;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+            /* 0,0,0 c'est du noir, et 0.6 c'est l'opacité (60%) */
+            background-color: rgba(0, 0, 0, 0.6); 
+            background-image: url("../recipecraft/assets/background/image.png");
+            text-shadow: 2px 2px 0px #000;
+            font-size: 16px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* Container de la barre (Gris foncé de ton image) */
+        .mc-slider-container {
+            position: relative;
+            width: 310px;
+            height: 40px;
+            background: #4b4b4b; 
+            border: 2px solid #000;
+        }
+
     </style>
 </head>
 <body>
@@ -148,10 +241,22 @@
 </header>
 
 <div class="nav">
+    <a href="#" id="settings-btn">SETTINGS</a>
     <a href="../index.html">ACCUEIL</a>
     <a href="https://minecraft.wiki" target="_blank" rel="noopener noreferrer">WIKI</a>
     <a href="https://www.minecraft.net/fr-fr/minecraft-tips-for-beginners" target="_blank" rel="noopener noreferrer">GUIDES</a>
 </div>
+
+
+<div id="settings-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; flex-direction:column; justify-content:center; align-items:center;">
+    <h2 style="color:white;">OPTIONS</h2>
+    <div class="mc-slider-container">
+        <div class="mc-slider-label">Jukebox/Note Blocks: <span id="volume-value">100%</span></div>
+        <input type="range" id="volume-slider" min="0" max="100" value="100">
+    </div>
+    <button id="close-settings">Close Settings</button>
+</div>
+
 
 <div id="jukebox-container">
     <img src="Jukebox.png" id="jukebox" alt="Jukebox">
@@ -302,7 +407,14 @@ function updateDragPosition(e) {
     dragIcon.style.left = (e.clientX - 25) + 'px';
     dragIcon.style.top = (e.clientY - 25) + 'px';
 }
+document.getElementById('settings-btn').onclick = (e) => { 
+    e.preventDefault(); 
+    document.getElementById('settings-modal').style.display = 'flex'; 
+};
 
+document.getElementById('close-settings').onclick = () => { 
+    document.getElementById('settings-modal').style.display = 'none'; 
+};
 function ejectDisc() {
     if (!currentDiscImg) return;
     const disc = document.createElement('img');
