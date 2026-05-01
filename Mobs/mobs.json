@@ -1,12 +1,21 @@
 [
   {
+    "name": "Allay",
+    "category": "Passive",
+    "image": "mob/passive/allay.gif",
+    "sounds": [
+      "mob/sounds/Allay_hurt1.mp3",
+      "mob/sounds/Allay_hurt2.mp3"
+    ]
+  },
+    {
     "name": "Cow",
     "category": "Passive",
     "image": "mob/passive/cow.png",
     "sounds": [
       "mob/sounds/Cow_hurt1.ogg",
-      "mob/sounds/cow_hurt2.ogg",
-      "mob/sounds/cow_hurt3.ogg"
+      "mob/sounds/Cow_hurt2.ogg",
+      "mob/sounds/Cow_hurt3.ogg"
     ]
   }
 ]
