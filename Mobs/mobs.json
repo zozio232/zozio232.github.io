@@ -449,10 +449,10 @@
     "category": "Passive",
     "image": "mob/passive/strider.gif",
     "sounds": [
-      "mob/sounds/Strider_hurt1.ogg",
-      "mob/sounds/Strider_hurt2.ogg",
-      "mob/sounds/Striderm_hurt3.mp3",
-      "mob/sounds/Strider_hurt3.mp3"
+      "mob/sounds/Strider_hurt1.mp3",
+      "mob/sounds/Strider_hurt2.mp3",
+      "mob/sounds/Strider_hurt3.mp3",
+      "mob/sounds/Strider_hurt4.mp3"
     ]
   }
 ]
