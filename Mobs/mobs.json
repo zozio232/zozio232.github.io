@@ -9,6 +9,18 @@
     ]
   },
     {
+    "name": "Armadillo",
+    "category": "Passive",
+    "image": "mob/passive/armadillo.png",
+    "sounds": [
+      "mob/sounds/Armadillo_hurt1.mp3",
+      "mob/sounds/Armadillo_hurt2.mp3",
+      "mob/sounds/Armadillo_hurt3.mp3",
+      "mob/sounds/Armadillo_hurt4.mp3",
+      "mob/sounds/Armadillo_hurt5.mp3"
+    ]
+  },
+    {
     "name": "Cow",
     "category": "Passive",
     "image": "mob/passive/cow.png",
