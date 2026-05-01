@@ -42,6 +42,28 @@
       "mob/sounds/Bat_hurt4.mp3"
     ]
   },
+      {
+    "name": "Camel",
+    "category": "Passive",
+    "image": "mob/passive/camel.gif",
+    "sounds": [
+      "mob/sounds/Camel_hurt1.mp3",
+      "mob/sounds/Camel_hurt2.mp3",
+      "mob/sounds/Camel_hurt3.mp3",
+      "mob/sounds/Camel_hurt4.mp3"
+    ]
+  },
+      {
+    "name": "Camel Husk",
+    "category": "Passive",
+    "image": "mob/passive/bat.gif",
+    "sounds": [
+      "mob/sounds/Camel_Husk_hurt1.ogg",
+      "mob/sounds/Camel_Husk_hurt2.ogg",
+      "mob/sounds/Camel_Husk_hurt3.ogg",
+      "mob/sounds/Camel_Husk_hurt4.ogg"
+    ]
+  },
     {
     "name": "Cow",
     "category": "Passive",
