@@ -133,15 +133,29 @@
             margin-bottom: -4px; /* Pour coller au contenu */
         }
 
-        .tab-btn {
-            background: #7e7e7e;
-            border: 4px solid #000;
-            border-bottom: none;
-            color: white;
+      .tab-btn {
+            /* Couleurs de base Minecraft */
+            background-color: #7e7e7e;
+            color: #ffffff;
+            
+            /* Police et texte */
+            font-family: 'Minecraftia', sans-serif;
+            font-size: 14px;
+            text-shadow: 2px 2px 0px #3f3f3f;
+            
+            /* Bordures complexes (Effet 3D Pixel) */
+            border: 2px solid #000000;
+            box-shadow: inset -2px -4px 0px #4a4a4a, /* Ombre interne */
+                        inset 2px 4px 0px #ababab;  /* Lumière interne */
+            
             padding: 10px 20px;
             cursor: pointer;
-            font-family: 'Minecraftia', sans-serif;
-            margin-right: 5px;
+            position: relative;
+            margin: 0 2px;
+            
+            /* Empêche la sélection du texte */
+            user-select: none;
+            transition: none; /* Pas de transition fluide, Minecraft est "instantané" */
         }
 
         .tab-btn:hover {
@@ -149,7 +163,18 @@
             background: #7a7a7a;
             outline: 3px solid white; /* Sélection blanche comme dans l'inventaire */
         }
-
+        .tab-btn:active {
+            background-color: #4e4e4e;
+            box-shadow: inset 2px 4px 0px #2a2a2a, /* Inversion des ombres */
+                        inset -2px -4px 0px #7e7e7e;
+            padding-top: 12px; /* Simulation d'enfoncement */
+            padding-bottom: 8px;
+        }
+        .tab-btn.active {
+            background-color: #555555;
+            border-color: #ffffff;
+            box-shadow: inset 2px 4px 0px #2a2a2a; /* Reste "enfoncé" */
+        }
         /* Zone du contenu (le "dossier") */
         .folder-content {
             background: rgba(0, 0, 0, 0.7);
