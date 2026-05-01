@@ -465,5 +465,61 @@
       "mob/sounds/Sulfur_cube_hit3.ogg",
       "mob/sounds/Sulfur_cube_hit4.ogg"
     ]
+  },
+    {
+    "name": "Tadpole",
+    "category": "Passive",
+    "image": "mob/passive/tadpole.png",
+    "sounds": [
+      "mob/sounds/Tadpole_hurt1.ogg",
+      "mob/sounds/Tadpole_hurt2.ogg",
+      "mob/sounds/Tadpole_hurt3.mp3",
+      "mob/sounds/Tadpole_hurt4.mp3"
+    ]
+  },
+    {
+    "name": "Tropical Fish",
+    "category": "Passive",
+    "image": "mob/passive/tropical_fish.png",
+    "sounds": [
+      "mob/sounds/Fish_hurt1.mp3",
+      "mob/sounds/Fish_hurt2.mp3",
+      "mob/sounds/Fish_hurt3.mp3",
+      "mob/sounds/Fish_hurt4.mp3"
+    ]
+  },
+    {
+    "name": "Turtle",
+    "category": "Passive",
+    "image": "mob/passive/turtle.png",
+    "sounds": [
+      "mob/sounds/Turtle_hurt1.mp3",
+      "mob/sounds/Turtle_hurt2.mp3",
+      "mob/sounds/Turtle_hurt3.mp3",
+      "mob/sounds/Turtle_hurt4.mp3",
+      "mob/sounds/Turtle_hurt5.mp3"
+    ]
+  },
+    {
+    "name": "Villager",
+    "category": "Passive",
+    "image": "mob/passive/villager.png",
+    "sounds": [
+      "mob/sounds/Villager_hurt1.mp3",
+      "mob/sounds/Villager_hurt2.mp3",
+      "mob/sounds/Villager_hurt3.mp3",
+      "mob/sounds/Villager_hurt4.mp3"
+    ]
+  },
+        {
+    "name": "Wandering Trader",
+    "category": "Passive",
+    "image": "mob/passive/wandering_trader.png",
+    "sounds": [
+      "mob/sounds/Wandering_trader_hurt1.mp3",
+      "mob/sounds/Wandering_trader_hurt2.mp3",
+      "mob/sounds/Wandering_trader_hurt3.mp3",
+      "mob/sounds/Wandering_trader_hurt4.mp3"
+    ]
   }
 ]
