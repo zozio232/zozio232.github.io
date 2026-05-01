@@ -407,10 +407,10 @@
     "category": "Passive",
     "image": "mob/passive/skeleton_horse.png",
     "sounds": [
-      "mob/sounds/Skeleton_Horse_hurt1.ogg",
-      "mob/sounds/Skeleton_Horse_hurt2.ogg",
-      "mob/sounds/Skeleton_Horse_hurt3.ogg",
-      "mob/sounds/Skeleton_Horse_hurt4.ogg"
+      "mob/sounds/Skeleton_horse_hurt1.ogg",
+      "mob/sounds/Skeleton_horse_hurt2.ogg",
+      "mob/sounds/Skeleton_horse_hurt3.ogg",
+      "mob/sounds/Skeleton_horse_hurt4.ogg"
     ]
   },
     {
