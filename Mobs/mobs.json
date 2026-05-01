@@ -206,5 +206,15 @@
       "mob/sounds/Cow_hurt2.ogg",
       "mob/sounds/Cow_hurt3.ogg"
     ]
+  },
+      {
+    "name": "Donkey",
+    "category": "Passive",
+    "image": "mob/passive/donkey.png",
+    "sounds": [
+      "mob/sounds/Donkey_hurt1.ogg",
+      "mob/sounds/Donkey_hurt2.ogg",
+      "mob/sounds/Donkey_hurt3.ogg"
+    ]
   }
 ]
