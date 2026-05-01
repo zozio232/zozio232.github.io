@@ -701,7 +701,7 @@
       "mob/sounds/Spider_idle4.ogg"
     ]
   },
-    {
+  {
     "name": "Wold",
     "category": "Neutral",
     "image": "mob/neutral/wolf.png",
@@ -711,7 +711,7 @@
       "mob/sounds/Wolf_hurt3.ogg"
     ]
   },
-    {
+  {
     "name": "Zombie Nautilus",
     "category": "Neutral",
     "image": "mob/neutral/zombie_nautilus.gif",
@@ -720,6 +720,15 @@
       "mob/sounds/Zombie_Nautilus_hurt_land2.ogg",
       "mob/sounds/Zombie_Nautilus_hurt_land3.ogg",
       "mob/sounds/Zombie_Nautilus_hurt_land4.ogg"
+    ]
+  },
+  {
+    "name": "Zombified Piglin",
+    "category": "Neutral",
+    "image": "mob/neutral/zombified_piglin.png",
+    "sounds": [
+      "mob/sounds/Zombie_pigman_hurt1.ogg",
+      "mob/sounds/Zombie_pigman_hurt2.ogg"
     ]
   }
 
