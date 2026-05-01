@@ -159,20 +159,6 @@
         }
 
         /* Carte du Mob */
-        .mob-card {
-            background: #4e4e4e;
-            border: 3px solid #000;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
-
-        .mob-card img {
-            width: 64px;
-            height: 64px;
-            image-rendering: pixelated; /* Garde l'aspect pixel de Minecraft */
-        }
 
         /* Filtre Rouge quand on clique (Flash de dégâts) */
         .mob-card.playing {
@@ -180,7 +166,32 @@
             transform: scale(0.95);
         }
 
+        /* Carte du Mob ajustée */
+        .mob-card {
+            background: #4e4e4e;
+            border: 3px solid #000;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1 / 1; /* Force un carré parfait */
+            transition: background 0.2s;
+        }
 
+        .mob-card img {
+            width: 90%; /* L'image prend presque toute la place */
+            height: 90%;
+            object-fit: contain; /* Garde les proportions de l'image */
+            image-rendering: pixelated;
+        }
+
+        /* État désactivé pendant le cooldown */
+        .mob-card.cooldown {
+            cursor: not-allowed;
+            opacity: 0.7;
+            filter: grayscale(0.5);
+}
 
 
 
@@ -220,34 +231,44 @@
 </body>
 <script>
     let allMobs = [];
+    const COOLDOWN_TIME = 800; // Temps en millisecondes (0.8s)
 
-    // 1. Charger les données du JSON au démarrage
     fetch('mobs.json')
         .then(response => response.json())
         .then(data => {
             allMobs = data;
-            openFolder('Passive'); // Affiche les passifs par défaut
+            openFolder('Passive');
         });
 
     function openFolder(category) {
         const container = document.getElementById('mob-container');
-        container.innerHTML = ''; // On vide l'affichage actuel
+        container.innerHTML = '';
 
-        // 2. Filtrer les mobs selon la catégorie du bouton cliqué
         const filteredMobs = allMobs.filter(m => m.category.toLowerCase() === category.toLowerCase());
 
         filteredMobs.forEach(mob => {
-            // Création de la carte du mob
             const card = document.createElement('div');
             card.className = 'mob-card';
-            card.innerHTML = `
-                <img src="${mob.image}" alt="${mob.name}">
-                <p>${mob.name}</p>
-            `;
+            // Plus de texte, juste l'image
+            card.innerHTML = `<img src="${mob.image}" alt="${mob.name}" title="${mob.name}">`;
 
-            // Gestion du clic pour le son et l'effet rouge
+            // On utilise une variable locale pour le cooldown de cette carte précise
+            let isWaiting = false;
+
             card.onclick = () => {
+                if (isWaiting) return; // Si en cooldown, on ne fait rien
+
+                isWaiting = true;
                 playRandomSound(mob.sounds, card);
+
+                // Activation du cooldown visuel
+                card.classList.add('cooldown');
+
+                // Désactivation du cooldown après le délai
+                setTimeout(() => {
+                    isWaiting = false;
+                    card.classList.remove('cooldown');
+                }, COOLDOWN_TIME);
             };
 
             container.appendChild(card);
@@ -255,19 +276,16 @@
     }
 
     function playRandomSound(soundList, element) {
-        if (soundList.length === 0) return;
+        if (!soundList || soundList.length === 0) return;
 
-        // Choisir un son au hasard dans la liste du JSON
         const randomSound = soundList[Math.floor(Math.random() * soundList.length)];
         const audio = new Audio(randomSound);
 
-        // Effet visuel
         element.classList.add('playing');
         audio.play();
 
-        // On retire le filtre rouge quand le son finit ou après un court délai
-        audio.onended = () => element.classList.remove('playing');
-        setTimeout(() => element.classList.remove('playing'), 500);
+        // Le filtre rouge de dégâts dure 400ms
+        setTimeout(() => element.classList.remove('playing'), 400);
     }
 </script>
 </html>
