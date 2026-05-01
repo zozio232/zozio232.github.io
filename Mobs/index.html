@@ -161,9 +161,19 @@
         /* Carte du Mob */
 
         /* Filtre Rouge quand on clique (Flash de dégâts) */
+        /* L'effet de "dégât" Minecraft */
         .mob-card.playing {
-            filter: sepia(100%) saturate(500%) hue-rotate(-50deg);
-            transform: scale(0.95);
+            /* Mix de filtres pour obtenir un rouge pur et saturé */
+            filter: sepia(100%) saturate(500%) hue-rotate(-50deg) brightness(0.8);
+            
+            /* Le petit saut/contraction du mob */
+            transform: scale(0.9);
+            
+            /* Bordure rouge pour accentuer l'effet */
+            border-color: #ff0000;
+            
+            /* Animation fluide mais rapide */
+            transition: all 0.1s ease-out;
         }
 
         /* Carte du Mob ajustée */
@@ -281,11 +291,16 @@
         const randomSound = soundList[Math.floor(Math.random() * soundList.length)];
         const audio = new Audio(randomSound);
 
+        // On active l'effet rouge
         element.classList.add('playing');
+        
         audio.play();
 
-        // Le filtre rouge de dégâts dure 400ms
-        setTimeout(() => element.classList.remove('playing'), 400);
+        // On retire l'effet rouge après 200ms 
+        // (C'est la durée standard d'un flash de dégât dans MC)
+        setTimeout(() => {
+            element.classList.remove('playing');
+        }, 200);
     }
 </script>
 </html>
