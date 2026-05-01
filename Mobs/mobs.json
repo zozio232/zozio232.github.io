@@ -532,5 +532,52 @@
       "mob/sounds/Zombie_horse_hurt3.ogg",
       "mob/sounds/Zombie_horse_hurt4.ogg"
     ]
+  },
+
+
+
+
+
+
+    {
+    "name": "Bee",
+    "category": "Neutral",
+    "image": "mob/neutral/bee.gif",
+    "sounds": [
+      "mob/sounds/Bee_hurt1.mp3",
+      "mob/sounds/Bee_hurt2.mp3",
+      "mob/sounds/Bee_hurt3.mp3"
+    ]
+  },
+  {
+    "name": "Cave Spider",
+    "category": "Neutral",
+    "image": "mob/neutral/cave_spider.png",
+    "sounds": [
+      "mob/sounds/Spider_idle1.ogg",
+      "mob/sounds/Spider_idle2.ogg",
+      "mob/sounds/Spider_idle3.ogg",
+      "mob/sounds/Spider_idle4.ogg"
+    ]
+  },
+  {
+    "name": "Dolphin",
+    "category": "Neutral",
+    "image": "mob/neutral/dolphin.gif",
+    "sounds": [
+      "mob/sounds/Dolphin_hurt1.mp3",
+      "mob/sounds/Dolphin_hurt2.mp3",
+      "mob/sounds/Dolphin_hurt3.mp3"
+    ]
+  },
+    {
+    "name": "Drowned",
+    "category": "Neutral",
+    "image": "mob/neutral/drowned.png",
+    "sounds": [
+      "mob/sounds/Drowned_hurt1.mp3",
+      "mob/sounds/Drowned_hurt2.mp3",
+      "mob/sounds/Drowned_hurt3.ogg"
+    ]
   }
 ]
