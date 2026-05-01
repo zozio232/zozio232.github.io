@@ -185,6 +185,18 @@
 
     ]
   },
+      {
+    "name": "Copper Golem",
+    "category": "Passive",
+    "image": "mob/passive/copper_golem.png",
+    "sounds": [
+      "mob/sounds/copper_golem_regular_hurt1.ogg",
+      "mob/sounds/copper_golem_regular_hurt2.ogg",
+      "mob/sounds/copper_golem_regular_hurt3.ogg",
+      "mob/sounds/copper_golem_regular_hurt4.ogg"
+
+    ]
+  },
     {
     "name": "Cow",
     "category": "Passive",
