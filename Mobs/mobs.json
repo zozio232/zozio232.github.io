@@ -275,15 +275,88 @@
     {
     "name": "Horse",
     "category": "Passive",
-    "image": "mob/passive/happy_ghast.gif",
+    "image": "mob/passive/horse.gif",
     "sounds": [
-      "mob/sounds/happy_ghast_hurt1.ogg",
-      "mob/sounds/happy_ghast_hurt2.ogg",
-      "mob/sounds/happy_ghast_hurt3.ogg",
-      "mob/sounds/happy_ghast_hurt4.ogg",
-      "mob/sounds/happy_ghast_hurt5.ogg",
-      "mob/sounds/happy_ghast_hurt6.ogg"
+      "mob/sounds/horse_hurt1.ogg",
+      "mob/sounds/horse_hurt2.mp3",
+      "mob/sounds/horse_hurt3.ogg",
+      "mob/sounds/horse_hurt4.ogg"
 
+    ]
+  },
+    {
+    "name": "Mushroom",
+    "category": "Passive",
+    "image": "mob/passive/mushroom.png",
+    "sounds": [
+      "mob/sounds/Cow_hurt1.ogg",
+      "mob/sounds/Cow_hurt2.ogg",
+      "mob/sounds/Cow_hurt3.ogg"
+    ]
+  },
+    {
+    "name": "Mule",
+    "category": "Passive",
+    "image": "mob/passive/mule.png",
+    "sounds": [
+      "mob/sounds/Donkey_hurt1.ogg",
+      "mob/sounds/Donkey_hurt2.ogg",
+      "mob/sounds/Donkey_hurt3.ogg"
+    ]
+  },
+    {
+    "name": "Ocelot",
+    "category": "Passive",
+    "image": "mob/passive/ocelot.png",
+    "sounds": [
+      "mob/sounds/Cat_hurt1.mp3",
+      "mob/sounds/Cat_hurt2.mp3",
+      "mob/sounds/Cat_hurt3.mp3"
+    ]
+  },
+    {
+    "name": "Blue Parrot",
+    "category": "Passive",
+    "image": "mob/passive/blue_parrot.png",
+    "sounds": [
+      "mob/sounds/Parrot_hurt1.mp3",
+      "mob/sounds/Parrot_hurt2.mp3"
+    ]
+  },
+    {
+    "name": "Cyan Parrot",
+    "category": "Passive",
+    "image": "mob/passive/cyan_parrot.png",
+    "sounds": [
+      "mob/sounds/Parrot_hurt1.mp3",
+      "mob/sounds/Parrot_hurt2.mp3"
+    ]
+  },
+    {
+    "name": "Gray Parrot",
+    "category": "Passive",
+    "image": "mob/passive/gray_parrot.png",
+    "sounds": [
+      "mob/sounds/Parrot_hurt1.mp3",
+      "mob/sounds/Parrot_hurt2.mp3"
+    ]
+  },
+    {
+    "name": "Green Parrot",
+    "category": "Passive",
+    "image": "mob/passive/green_parrot.png",
+    "sounds": [
+      "mob/sounds/Parrot_hurt1.mp3",
+      "mob/sounds/Parrot_hurt2.mp3"
+    ]
+  },
+        {
+    "name": "Red Parrot",
+    "category": "Passive",
+    "image": "mob/passive/red_parrot.png",
+    "sounds": [
+      "mob/sounds/Parrot_hurt1.mp3",
+      "mob/sounds/Parrot_hurt2.mp3"
     ]
   }
 ]
