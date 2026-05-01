@@ -216,5 +216,35 @@
       "mob/sounds/Donkey_hurt2.ogg",
       "mob/sounds/Donkey_hurt3.ogg"
     ]
+  },
+    {
+    "name": "Temperate Frog",
+    "category": "Passive",
+    "image": "mob/passive/temperate_frog.gif",
+    "sounds": [
+      "mob/sounds/Frog_hurt1.ogg",
+      "mob/sounds/Frog_hurt2.mp3",
+      "mob/sounds/Frog_hurt3.ogg"
+    ]
+  },
+   {
+    "name": "Cold Frog",
+    "category": "Passive",
+    "image": "mob/passive/cold_frog.gif",
+    "sounds": [
+      "mob/sounds/Frog_hurt1.ogg",
+      "mob/sounds/Frog_hurt2.mp3",
+      "mob/sounds/Frog_hurt3.ogg"
+    ]
+  },
+    {
+    "name": "Warm Frog",
+    "category": "Passive",
+    "image": "mob/passive/warm_frog.gif",
+    "sounds": [
+      "mob/sounds/Frog_hurt1.ogg",
+      "mob/sounds/Frog_hurt2.mp3",
+      "mob/sounds/Frog_hurt3.ogg"
+    ]
   }
 ]
