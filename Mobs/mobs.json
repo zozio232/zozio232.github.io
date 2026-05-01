@@ -418,9 +418,9 @@
     "category": "Passive",
     "image": "mob/passive/sniffer.png",
     "sounds": [
-      "mob/sounds/Sniffer_hurt1.ogg",
-      "mob/sounds/Sniffer_hurt2.ogg",
-      "mob/sounds/Sniffer_hurt3.ogg"
+      "mob/sounds/Sniffer_hurt1.mp3",
+      "mob/sounds/Sniffer_hurt2.mp3",
+      "mob/sounds/Sniffer_hurt3.mp3"
     ]
   },
     {
@@ -430,7 +430,7 @@
     "sounds": [
       "mob/sounds/Snow_Golem_hurt1.ogg",
       "mob/sounds/Snow_Golem_hurt2.ogg",
-      "mob/sounds/Snow_Golem_hurt3.ogg"
+      "mob/sounds/Snow_Golem_hurt3.mp3"
     ]
   }
 ]
