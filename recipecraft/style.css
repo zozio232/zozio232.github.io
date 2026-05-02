@@ -20,12 +20,24 @@ body {
     flex-direction: column; /* Empile Header > Nav > App > Footer */
     overflow: hidden;       /* Empêche le scroll de la page entière */
     background-color: #1e1e1e;
-    background-image: url('assets/background/image.png');
+    background-image: url('assets/background/Blackstone.webp');
     background-repeat: repeat;
     background-size: 48px;
     image-rendering: pixelated;
     font-family: 'Minecraftia', sans-serif;
     color: white;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000; /* Filtre presque transparent */
+    opacity: 0.5;
+    z-index: -1;
 }
 
 /* Le conteneur qui sépare Sidebar et Détails */
@@ -41,8 +53,9 @@ body {
     width: 350px;
     display: flex;
     flex-direction: column;
-    background-color: #252525;
+    background-color: #1a1a1a; /* Couleur sombre de la Blackstone */
     border-right: 3px solid #1a1a1a;
+    opacity: 0.95;
 }
 
 #item-list {
