@@ -1010,6 +1010,287 @@
     ]
   },
 
+  {
+    "id": "leather_cap",
+    "name": "Leather Cap",
+    "icon": "assets/items/leather_cap.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["leather", "leather", "leather"],
+      ["leather", null, "leather"],
+      [null, null, null]
+    ]
+    ]
+  },
+{
+    "id": "leather_tunic",
+    "name": "Leather Tunic",
+    "icon": "assets/items/leather_tunic.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["leather", null, "leather"],
+      ["leather", "leather", "leather"],
+      ["leather", "leather", "leather"]
+    ]
+    ]
+  },
+{
+    "id": "leather_pants",
+    "name": "Leather Pants",
+    "icon": "assets/items/leather_pants.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["leather", "leather", "leather"],
+      ["leather", null, "leather"],
+      ["leather", null, "leather"]
+    ]
+    ]
+  },
+{
+    "id": "leather_boots",
+    "name": "Leather Boots",
+    "icon": "assets/items/leather_boots.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      [null, null, null],
+      ["leather", null, "leather"],
+      ["leather", null, "leather"]
+    ]
+    ]
+  },
+
+  {
+    "id": "copper_helmet",
+    "name": "Copper Helmet",
+    "icon": "assets/items/copper_helmet.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["copper_ingot", "copper_ingot", "copper_ingot"],
+      ["copper_ingot", null, "copper_ingot"],
+      [null, null, null]
+    ]
+    ]
+  },
+{
+    "id": "copper_chestplate",
+    "name": "Copper Chestplate",
+    "icon": "assets/items/copper_chestplate.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["copper_ingot", null, "copper_ingot"],
+      ["copper_ingot", "copper_ingot", "copper_ingot"],
+      ["copper_ingot", "copper_ingot", "copper_ingot"]
+    ]
+    ]
+  },
+{
+    "id": "copper_leggings",
+    "name": "Copper Leggings",
+    "icon": "assets/items/copper_leggings.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["copper_ingot", "copper_ingot", "copper_ingot"],
+      ["copper_ingot", null, "copper_ingot"],
+      ["copper_ingot", null, "copper_ingot"]
+    ]
+    ]
+  },
+{
+    "id": "copper_boots",
+    "name": "Copper Boots",
+    "icon": "assets/items/copper_boots.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      [null, null, null],
+      ["copper_ingot", null, "copper_ingot"],
+      ["copper_ingot", null, "copper_ingot"]
+    ]
+    ]
+  },
+
+    {
+    "id": "golden_helmet",
+    "name": "Golden Helmet",
+    "icon": "assets/items/golden_helmet.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["gold_ingot", "gold_ingot", "gold_ingot"],
+      ["gold_ingot", null, "gold_ingot"],
+      [null, null, null]
+    ]
+    ]
+  },
+{
+    "id": "golden_chestplate",
+    "name": "Golden Chestplate",
+    "icon": "assets/items/golden_chestplate.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["gold_ingot", null, "gold_ingot"],
+      ["gold_ingot", "gold_ingot", "gold_ingot"],
+      ["gold_ingot", "gold_ingot", "gold_ingot"]
+    ]
+    ]
+  },
+{
+    "id": "golden_leggings",
+    "name": "Golden Leggings",
+    "icon": "assets/items/golden_leggings.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["gold_ingot", "gold_ingot", "gold_ingot"],
+      ["gold_ingot", null, "gold_ingot"],
+      ["gold_ingot", null, "gold_ingot"]
+    ]
+    ]
+  },
+{
+    "id": "golden_boots",
+    "name": "Golden Boots",
+    "icon": "assets/items/golden_boots.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      [null, null, null],
+      ["gold_ingot", null, "gold_ingot"],
+      ["gold_ingot", null, "gold_ingot"]
+    ]
+    ]
+  },
+
+  {
+    "id": "iron_helmet",
+    "name": "Iron Helmet",
+    "icon": "assets/items/iron_helmet.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["iron_ingot", "iron_ingot", "iron_ingot"],
+      ["iron_ingot", null, "iron_ingot"],
+      [null, null, null]
+    ]
+    ]
+  },
+{
+    "id": "iron_chestplate",
+    "name": "Iron Chestplate",
+    "icon": "assets/items/iron_chestplate.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["iron_ingot", null, "iron_ingot"],
+      ["iron_ingot", "iron_ingot", "iron_ingot"],
+      ["iron_ingot", "iron_ingot", "iron_ingot"]
+    ]
+    ]
+  },
+{
+    "id": "iron_leggings",
+    "name": "Iron Leggings",
+    "icon": "assets/items/iron_leggings.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["iron_ingot", "iron_ingot", "iron_ingot"],
+      ["iron_ingot", null, "iron_ingot"],
+      ["iron_ingot", null, "iron_ingot"]
+    ]
+    ]
+  },
+{
+    "id": "iron_boots",
+    "name": "Iron Boots",
+    "icon": "assets/items/iron_boots.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      [null, null, null],
+      ["iron_ingot", null, "iron_ingot"],
+      ["iron_ingot", null, "iron_ingot"]
+    ]
+    ]
+  },
+   {
+    "id": "diamond_helmet",
+    "name": "Diamond Helmet",
+    "icon": "assets/items/diamond_helmet.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["diamond", "diamond", "diamond"],
+      ["diamond", null, "diamond"],
+      [null, null, null]
+    ]
+    ]
+  },
+{
+    "id": "diamond_chestplate",
+    "name": "Diamond Chestplate",
+    "icon": "assets/items/diamond_chestplate.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["diamond", null, "diamond"],
+      ["diamond", "diamond", "diamond"],
+      ["diamond", "diamond", "diamond"]
+    ]
+    ]
+  },
+{
+    "id": "diamond_leggings",
+    "name": "Diamond Leggings",
+    "icon": "assets/items/diamond_leggings.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["diamond", "diamond", "diamond"],
+      ["diamond", null, "diamond"],
+      ["diamond", null, "diamond"]
+    ]
+    ]
+  },
+{
+    "id": "diamond_boots",
+    "name": "Diamond Boots",
+    "icon": "assets/items/diamond_boots.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      [null, null, null],
+      ["diamond", null, "diamond"],
+      ["diamond", null, "diamond"]
+    ]
+    ]
+  },
+{
+    "id": "leather_horse_armor",
+    "name": "Leather Horse Armor",
+    "icon": "assets/items/leather_horse_armor.png",
+    "category": "Armors",
+    "recipes":[
+    [
+      ["leather", null, "leather"],
+      ["leather", "leather", "leather"],
+      ["leather", null, "leather"]
+    ]
+    ]
+  },
+
+
+
+
+
 
 
 
