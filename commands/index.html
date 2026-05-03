@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <title>AmaiCraft Command Generator - Not Created Yet</title>
-
+    <title>AmaiCraft - Commandes</title>
     <style>
-
-
+        /* --- POLICE ET VARIABLES --- */
         @font-face {
             font-family: 'Minecraftia';
             font-style: normal;
@@ -19,54 +13,40 @@
         }
 
         :root {
-
             --mc-gui-panel: #c6c6c6;
-
             --mc-gui-button: #7e7e7e;
-
             --mc-gui-shadow: #555555;
-
             --mc-gui-light: #ffffff;
-
             --mc-text-shadow: #3f3f3f;
+            --mc-border-dark: #555555;
+        }
 
+        /* --- STYLE DE BASE (Ton CSS) --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            overflow-x: hidden;
         }
 
         body {
             font-family: 'Minecraftia', 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            /* Texture de fond */
             background-image: url('dirt.webp'); 
             background-repeat: repeat;
             background-size: 64px;
             background-attachment: fixed;
             color: white;
-
-            
+            padding-bottom: 90px;
         }
 
-        header img {
-            /* --- POSITIONNEMENT --- */
-            position: absolute;
-            right: 0;   /* Collé au mur de droite */
-            top: 0;
-            bottom: 0;
-            
-            /* --- TAILLE --- */
-            height: 100%;
-            width: auto;
-        }
-        /* HEADER */
         header {
             background: rgba(0, 0, 0, 0.8);
             border-bottom: 4px solid #000;
             padding: 20px;
             text-align: center;
-
-                /* --- AJOUT INDISPENSABLE --- */
-            position: relative; /* Sert de repère pour le perroquet */
-            overflow: hidden;    /* Empêche le perroquet de déborder si besoin */
-            min-height: 70px;   /* Ajuste selon la taille de ton texte pour pas que ce soit trop plat */
+            position: relative;
+            overflow: hidden;
+            min-height: 70px;
         }
 
         header h1 {
@@ -76,7 +56,12 @@
             letter-spacing: 2px;
         }
 
-        /* NAV BAR STYLE BOUTONS MC */
+        header img {
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            height: 100%; width: auto;
+        }
+
         .nav {
             background: rgba(0, 0, 0, 0.6);
             padding: 10px;
@@ -101,12 +86,100 @@
             border-top-color: #dbdbdb;
             border-left-color: #dbdbdb;
         }
+
+        /* --- SECTION COMMANDES (Nouveau) --- */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: var(--mc-gui-panel);
+            border: 4px solid #000;
+            box-shadow: inset 4px 4px 0px var(--mc-gui-light), 
+                        inset -4px -4px 0px var(--mc-gui-shadow);
+            padding: 30px;
+            color: #3f3f3f;
+        }
+
+        h2 {
+            border-bottom: 3px solid #3f3f3f;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 22px;
+            color: #1d1d1d;
+        }
+
+        .command-section {
+            margin-bottom: 25px;
+        }
+
+        .command-section h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .command-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 10px;
+        }
+
+        .command-item {
+            background: #8b8b8b;
+            border: 2px solid #000;
+            border-top-color: #373737;
+            border-left-color: #373737;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.1s;
+        }
+
+        .command-item:hover {
+            background: #7a7a7a;
+            outline: 3px solid white;
+        }
+
+        .command-code {
+            color: #ffff55; /* Or Minecraft */
+            text-shadow: 2px 2px 0px #3f3f15;
+            font-size: 14px;
+        }
+
+        .command-desc {
+            color: #eeeeee;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        /* Notification de copie */
+        .toast {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: auto;
+            box-sizing: border-box;
+            background: linear-gradient(90deg, #55ff55 0%, #2fcf2f 50%, #55ff55 100%);
+            color: #000;
+            padding: 14px 20px;
+            border-bottom: 4px solid #000;
+            display: none;
+            z-index: 9999;
+            font-size: 14px;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- FOOTER --- */
         footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            margin-top: 40px;
             padding: 20px;
             text-align: center;
             font-size: 12px;
@@ -116,49 +189,144 @@
             z-index: 2000;
         }
     </style>
-
 </head>
 
 <body>
+
+<div id="copyToast" class="toast">Command copied!</div>
+
 <header>
     <h1>AMAICRAFT</h1>
     <img src="../parrotparty.gif" alt="Parrot Party">
 </header>
 
 <div class="nav">
-    <a href="../index.html">ACCUEIL</a>
+    <a href="../index.html">HOME</a>
     <a href="https://minecraft.wiki" target="_blank" rel="noopener noreferrer">WIKI</a>
     <a href="https://www.minecraft.net/fr-fr/minecraft-tips-for-beginners" target="_blank" rel="noopener noreferrer">GUIDES</a>
 </div>
+
+<div class="container">
+    <h2>Useful Commands</h2>
+    <p style="font-size: 12px; color: #555; margin-bottom: 20px;">Click on a command to copy it to your game.</p>
+
+    <div class="command-section">
+        <h3>🗿 Gamemodes</h3>
+        <div class="command-list">
+            <div class="command-item" onclick="copyCmd('/gamemode creative')">
+                <span class="command-code">/gamemode creative</span>
+                <span class="command-desc">Turn to Creative</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/gamemode survival')">
+                <span class="command-code">/gamemode survival</span>
+                <span class="command-desc">Turn to Survival</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/gamemode adventure')">
+                <span class="command-code">/gamemode adventure</span>
+                <span class="command-desc">Turn to Adventure</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/gamemode spectator')">
+                <span class="command-code">/gamemode spectator</span>
+                <span class="command-desc">Turn to Spectator</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="command-section">
+        <h3>🛠️ Admin Items</h3>
+        <div class="command-list">
+            <div class="command-item" onclick="copyCmd('/give @p minecraft:command_block')">
+                <span class="command-code">/give @p command_block</span>
+                <span class="command-desc">Give a command block</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/give @p minecraft:barrier')">
+                <span class="command-code">/give @p barrier</span>
+                <span class="command-desc">Give an invisible block</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/give @p minecraft:light')">
+                <span class="command-code">/give @p light</span>
+                <span class="command-desc">Give a light block</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/give @p minecraft:debug_stick')">
+                <span class="command-code">/give @p debug_stick</span>
+                <span class="command-desc">Give a debug stick</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/give @p minecraft:structure_block')">
+                <span class="command-code">/give @p structure_block</span>
+                <span class="command-desc">Give a structure block</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/give @p minecraft:knowledge_book')">
+                <span class="command-code">/give @p knowledge_book</span>
+                <span class="command-desc">Give a knowledge book</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="command-section">
+        <h3>🌍 Secret Mobs</h3>
+        <div class="command-list">
+            <div class="command-item" onclick="copyCmd('/summon illusioner')">
+                <span class="command-code">/summon illusioner</span>
+                <span class="command-desc">Summon an illusioner</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/summon giant')">
+                <span class="command-code">/summon giant</span>
+                <span class="command-desc">Summon a giant zombie</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="command-section">
+        <h3>🌍 World & Time</h3>
+        <div class="command-list">
+            <div class="command-item" onclick="copyCmd('/time set day')">
+                <span class="command-code">/time set day</span>
+                <span class="command-desc">Set the time to day</span>
+            </div>
+            <div class="command-item" onclick="copyCmd('/gamerule keepInventory true')">
+                <span class="command-code">/gamerule keepInventory true</span>
+                <span class="command-desc">Keep inventory after death</span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer>
-        <a href="https://ko-fi.com/amaicraft" target="_blank" style="color: #13c3ff; text-decoration: none;" rel="noopener noreferrer" id="Don">
-            ☕ Buy me a Coffee
-        </a> <br>
-    <strong>Page communautaire 
-        <a href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer" style="color:  #85b6ee; text-decoration: none; border-bottom: 1px solid transparent; background-image: linear-gradient(90deg, #ffffff 0%, #a8f0a5 100%); background-size: 100% 1px; background-repeat: no-repeat; background-position: 0 100%;">Minecraft</a></strong> — Site non officiel<br>
+    <a href="https://ko-fi.com/amaicraft" target="_blank" style="color: #13c3ff; text-decoration: none;" rel="noopener noreferrer" id="Don">
+        ☕ Buy me a Coffee
+    </a> <br>
+    <strong>Community Page 
+        <a href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer" style="color: #85b6ee; text-decoration: none;">Minecraft</a></strong> — Unofficial website<br>
 </footer>
-</body>
+
 <script>
-        window.onload = function() {
+    // Fonction pour copier les commandes
+    function copyCmd(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.getElementById('copyToast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2000);
+        });
+    }
+
+    // Effet multicolore sur le bouton de don
+    window.onload = function() {
         const Coff = document.getElementById('Don');
         const text = Coff.innerText;
-        Coff.innerHTML = ''; // On vide le titre pour le reconstruire
-
+        Coff.innerHTML = '';
         for (let char of text) {
             const span = document.createElement('span');
             span.innerText = char;
-            
-            // Génération d'une couleur pastel
-            // On reste sur des valeurs hautes (entre 127 et 255) pour garder de la clarté
             const hue = Math.floor(Math.random() * 360);
             const color = `hsl(${hue}, 100%, 80%)`;
             span.style.color = color;
             span.style.textDecoration = 'underline';
             span.style.textDecorationColor = color;
-            span.style.textDecorationThickness = '2px';
-            
             Coff.appendChild(span);
         }
     };
 </script>
+</body>
 </html>

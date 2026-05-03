@@ -274,37 +274,7 @@ function generateStoneVariants(id, name, withWall, withStairs) {
     return generated;
 }
 
-// Les fonctions renderList et showDetailsById restent identiques, 
-// vérifie juste que renderList utilise item.category pour les titres.
-
-function renderList(items) {
-    const container = document.getElementById('item-list');
-    container.innerHTML = '';
-    const displayable = items.filter(item => (item.recipes && item.recipes.length > 0) || (item.smelting));
-
-    const groups = {};
-    displayable.forEach(item => {
-        const cat = item.category || "Others"; 
-        if (!groups[cat]) groups[cat] = [];
-        groups[cat].push(item);
-    });
-
-    for (const cat in groups) {
-        const title = document.createElement('h2');
-        title.className = 'category-title';
-        title.innerText = cat; // Titres en anglais (Woods, Construction, etc.)
-        container.appendChild(title);
-
-        groups[cat].forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'item-row';
-            div.innerHTML = `${getImgHTML(item.icon)} <span>${item.name}</span>`;
-            div.onclick = () => showDetailsById(item.id);
-            container.appendChild(div);
-        });
-    }
-}
-// 2. IMAGE INTELLIGENTE
+// 1. IMAGE INTELLIGENTE
 function getImgHTML(iconPath, className = "", itemId = "") {
     // Si l'iconPath est vide mais qu'on a un ID (ex: "sand")
     let finalPath = iconPath;
@@ -335,6 +305,23 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('data/items.json').then(res => res.json()).then(data => {
         allItems = autoGenerateWood(data);
         renderList(allItems);
+        
+        // Ajouter l'écouteur de recherche
+        const searchInput = document.getElementById('search');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                if (searchTerm === '') {
+                    renderList(allItems);
+                } else {
+                    const filtered = allItems.filter(item => 
+                        (item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                        (item.category && item.category.toLowerCase().includes(searchTerm))
+                    );
+                    renderList(filtered);
+                }
+            });
+        }
     }).catch(err => console.error("Erreur JSON:", err));
 });
 
@@ -390,7 +377,7 @@ function showDetailsById(id) {
 
     // TABLE DE CRAFT
     if (item.recipes && item.recipes.length > 0) {
-        html += `<h3>Table de Craft</h3><div class="recipes-wrapper">`;
+        html += `<h3>Crafting Table</h3><div class="recipes-wrapper">`;
         item.recipes.forEach(recipe => {
             html += `<div class="crafting-container"><div class="grid-3x3">`;
             recipe.flat().forEach(slotId => {
@@ -409,7 +396,7 @@ function showDetailsById(id) {
     // FOUR
     if (item.smelting) {
         const ingSmelt = allItems.find(i => i.id === item.smelting.ingredient);
-        html += `<h3>Cuisson au four</h3>
+        html += `<h3>Furnace</h3>
             <div class="furnace-container">
                 <div class="furnace-input-group">
                     <div class="slot" ${ingSmelt ? `onclick="showDetailsById('${ingSmelt.id}')" style="cursor:pointer"` : ''}>
@@ -425,9 +412,9 @@ function showDetailsById(id) {
     if ((!item.recipes || item.recipes.length === 0) && !item.smelting) {
         html += `
             <div class="no-recipe-box">
-                <h3>Comment obtenir ?</h3>
-                <p>Cet item ne possède pas de recette de fabrication ou de cuisson.</p>
-                <p>Il doit être récupéré directement dans le monde (minage, drop de créature, ou coffres de donjons).</p>
+                <h3>How to Obtain</h3>
+                <p>This item does not have a crafting or smelting recipe.</p>
+                <p>It must be obtained directly from the world (mining, mob drops, or dungeon chests).</p>
             </div>
         `;
     }
