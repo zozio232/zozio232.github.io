@@ -62,7 +62,10 @@
                 transform: scaleX(-1);  /*Se retourne pour recommencer */
             }
         }
-
+        summary:hover span {
+            text-decoration: underline;
+            color: #85b6ee !important; /* Change de couleur au survol */
+        }
         footer {
             position: fixed;
             bottom: 0;
@@ -293,11 +296,34 @@
 </main>
 <img src="Steve_Chair.gif" class="steve-animation" alt="Steve running">
 <footer>
+    
     <a href="https://ko-fi.com/amaicraft" target="_blank" style="color: #13c3ff; text-decoration: none;" rel="noopener noreferrer" id="Don">
         ☕ Buy me a Coffee
     </a> <br>
-    <strong>Community Page 
-        <a href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer" style="color: #85b6ee; text-decoration: none;">Minecraft</a></strong> — Unofficial website<br>
+
+    <details style="user-select: none; -webkit-user-select: none; display: inline-block;">
+        <summary style="cursor: pointer; list-style: none; outline: none; font-size: 12px;">
+            <strong>Community Page 
+            <a href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer" style="color: #85b6ee; text-decoration: none; pointer-events: auto;">Minecraft</a></strong> 
+            — Unofficial website <span style="color: #5977af; font-size: 10px;">See Info</span>
+        </summary>
+
+        <div style="position: absolute; bottom: 85px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 500px; background: #c6c6c6; border: 3px solid #000; box-shadow: inset 3px 3px 0px #ffffff, inset -3px -3px 0px #555555; padding: 10px; z-index: 2001; cursor: default;">
+            <div style="background: #8b8b8b; border: 2px solid #000; box-shadow: inset 2px 2px 0px #373737, inset -2px -2px 0px #ffffff; padding: 15px; text-align: left; color: #3f3f3f;">
+                <h3 style="font-size: 14px; color: #ffff55; text-shadow: 2px 2px 0px #3f3f15; margin-top: 0;">AmaiCraft: Quick Reference Guide</h3>
+                <p style="font-size: 12px; margin-bottom: 10px;">
+                    Looking for specific <strong>Minecraft crafting recipes</strong>? AmaiCraft offers a direct <strong>craft list</strong> to help you build items quickly. 
+                </p>
+                <p style="font-size: 12px; margin-bottom: 10px;">
+                    Our tool includes <strong>basic Minecraft commands</strong> for <strong>admin items and cheats</strong>, as well as a dedicated <strong>Jukebox</strong> section for <strong>music discs</strong>. 
+                </p>
+                <p style="font-size: 12px; margin-bottom: 10px;">
+                    You can also explore and play all hurt <strong>mob sounds</strong> from the game or take a break with the integrated <strong>mining mini-game</strong>.
+                </p>
+                <p style="font-size: 11px; margin: 0;">Simple, fast, and <strong>unofficial</strong> Website.</p>
+            </div>
+        </div>
+    </details>
 </footer>
 
 <script>
