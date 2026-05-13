@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AmaiCraft - Blocks Collection</title>
     <style>
-        /* === STYLES DE BASE (CONSERVÉS) === */
+        /* === POLICE === */
         @font-face {
             font-family: 'Minecraftia';
             font-style: normal;
             font-weight: 400;
             src: local('Minecraftia'), url('../Minecraftia.woff') format('woff');
         }
-        /* ---  STEVE --- */
+        /* ---  STEVE SUR LA CHAISE --- */
         .steve-animation {
             position: fixed;
             bottom: 70px;
@@ -33,7 +33,7 @@
 
         @keyframes jump-animation {
             0% { bottom: 70px; animation-timing-function: ease-out; }
-            50% { bottom: 250px; animation-timing-function: ease-in; } /* Hauteur du saut */
+            50% { bottom: 250px; animation-timing-function: ease-in; }
             100% { bottom: 70px; }
         }
 
@@ -45,26 +45,26 @@
         @keyframes walk-around {
             0% {
                 left: -100px;
-                transform: scaleX(-1); /* Regarde vers la droite (si de base il regarde à gauche) */
+                transform: scaleX(-1);
             }
             45% {
-                transform: scaleX(-1); /* Continue de regarder à droite */
+                transform: scaleX(-1);
             }
             50% {
                 left: calc(100% - 100px);
-                /*transform: scaleX(1); Se retourne vers la gauche */
+                /*transform: scaleX(1);*/
             }
             95% {
-                /*transform: scaleX(1);  Continue de regarder à gauche */
+                /*transform: scaleX(1);*/
             }
             100% {
                 left: -100px;
-                transform: scaleX(-1);  /*Se retourne pour recommencer */
+                transform: scaleX(-1);
             }
         }
         summary:hover span {
             text-decoration: underline;
-            color: #85b6ee !important; /* Change de couleur au survol */
+            color: #85b6ee !important;
         }
         footer {
             position: fixed;
@@ -93,9 +93,9 @@
             font-family: 'Minecraftia', 'Segoe UI', Arial, sans-serif;
             margin: 0;
             background-image: url('background.jpg'); 
-            background-size: cover; /* Remplit tout l'écran */
-            background-position: center; /* Centre l'image */
-            background-repeat: no-repeat; /* Évite la répétition */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
             color: white;
             user-select: none;
@@ -149,7 +149,6 @@
             border-left-color: #dbdbdb;
         }
 
-        /* === ZONE DE JEU DYNAMIQUE === */
         main {
             display: flex;
             flex-direction: column;
@@ -171,14 +170,13 @@
             box-shadow: 8px 8px 0px rgba(0,0,0,0.4);
         }
 
-        /* Le Bloc en Image */
         #block-sprite {
             width: 128px;
             height: 128px;
             margin: 20px auto;
             cursor: pointer;
             display: block;
-            image-rendering: pixelated; /* Pour garder l'aspect Minecraft */
+            image-rendering: pixelated;
             transition: transform 0.05s;
         }
 
@@ -186,7 +184,6 @@
             transform: scale(0.9);
         }
 
-        /* Barre de progression (Craquelures) */
         .progress-container {
             width: 80%;
             height: 10px;
@@ -201,7 +198,6 @@
             background: #4caf50;
         }
 
-        /* Inventaire / Hotbar */
         .hotbar {
             display: flex;
             gap: 5px;
@@ -327,7 +323,6 @@
 </footer>
 
 <script>
-    // 1. Définition des blocs via JSON
     const blockData = [
         { id: "grass", name: "Grass Block", hits: 3, img: "Blocks/Grass_Block.png" },
         { id: "dirt", name: "Dirt", hits: 3, img: "Blocks/Dirt.png" },
@@ -338,12 +333,10 @@
         { id: "diamond", name: "Diamond", hits: 15, img: "../recipecraft/assets/items/diamond_ore.png" }
     ];
 
-    // 2. État du jeu
     let currentBlockIndex = 0;
     let currentHits = 0;
     let inventory = JSON.parse(localStorage.getItem('amaicraft_inv')) || {};
 
-    // 3. Initialisation
     function init() {
         spawnRandomBlock();
         updateInventoryUI();
@@ -359,7 +352,6 @@
         updateProgressBar();
     }
 
-    // 4. Logique de Minage
     function handleMine() {
         const block = blockData[currentBlockIndex];
         currentHits++;
@@ -378,7 +370,6 @@
         document.getElementById('progress-bar').style.width = percent + "%";
     }
 
-    // 5. Sauvegarde & Inventaire
     function collectBlock(id) {
         inventory[id] = (inventory[id] || 0) + 1;
         localStorage.setItem('amaicraft_inv', JSON.stringify(inventory));
@@ -387,9 +378,8 @@
 
     function updateInventoryUI() {
         const ui = document.getElementById('inventory-ui');
-        ui.innerHTML = ""; // Clear
+        ui.innerHTML = "";
         
-        // On affiche les 5 premiers types collectés
         Object.keys(inventory).forEach(id => {
             const data = blockData.find(b => b.id === id);
             if (data && inventory[id] > 0) {
@@ -403,7 +393,6 @@
             }
         });
 
-        // Remplir les slots vides pour le style
         while(ui.children.length < 5) {
             const empty = document.createElement('div');
             empty.className = "slot";
@@ -419,25 +408,17 @@
         }
     }
 
-    // Lancement
     init();
 
 
 
-
-
-
-
-
-    // Steve Saute
     const steve = document.querySelector('.steve-animation');
 
     steve.addEventListener('click', () => {
-        // Si Steve n'est pas déjà en train de sauter
+
         if (!steve.classList.contains('jumping')) {
             steve.classList.add('jumping');
 
-            // On retire la classe après 800ms (durée de l'animation)
             setTimeout(() => {
                 steve.classList.remove('jumping');
             }, 800);

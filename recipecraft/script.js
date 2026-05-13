@@ -7,7 +7,7 @@ function autoGenerateWood(baseData) {
     let generated = [...baseData];
     
 
-    // --- AJOUT DES OBJETS NEUTRES (SANS COULEUR) ---
+    // --- AJOUT DES OBJETS SANS COULEURS ---
     const neutrals = [
         {
             id: "shulker_box",
@@ -98,15 +98,13 @@ function autoGenerateWood(baseData) {
         { id: "quartz_block", name: "Block of Quartz", hasPolished: false, craftFrom: "quartz"},
         { id: "smooth_quartz", name: "Smooth Quartz Block", hasPolished: false, smeltFrom: "quartz_block"},
         { id: "blackstone", name: "Blackstone", hasPolished: true }, 
-        // hasPolished: true générera automatiquement "Polished Blackstone" + variants
 
         { id: "polished_blackstone_bricks", name: "Polished Blackstone Bricks", hasPolished: false, craftFrom: "polished_blackstone" }
     ];
 
 stoneTypes.forEach(s => {
     const base = s.id;
-    
-    // 1. Ajouter l'objet de base (Stone, Diorite, etc.)
+
     if(!generated.find(i => i.id === base)) {
         generated.push({
             id: base, name: s.name, category: "Building",
@@ -115,14 +113,12 @@ stoneTypes.forEach(s => {
         });
     }
 
-    // 2. Variantes pour le bloc DE BASE
-    // Sandstone, Quartz, Smooth -> Pas de murs
     const baseHasWall = !base.includes("quartz") && !base.includes("smooth") && !base.includes("stone");
     const baseHasStairs = (base !== "smooth_stone"); 
 
     generateStoneVariants(base, s.name, baseHasWall, baseHasStairs);
 
-    // 3. Cas spécial : Polished
+    // 3. Truc spécial
     if (s.hasPolished) {
         const pId = `polished_${base}`;
         const pName = `Polished ${s.name}`;
@@ -134,23 +130,19 @@ stoneTypes.forEach(s => {
         });
 
         // --- LA CORRECTION ICI ---
-        // Seule la Polished Blackstone et la Polished Deepslate ont des murs.
-        // La Polished Andesite/Diorite/Granite n'en ont PAS.
         const polishedHasWall = pId.includes("blackstone") || pId.includes("deepslate");
         
         generateStoneVariants(pId, pName, polishedHasWall, true);
     }
 });
-    // Fonction utilitaire mise à jour avec des drapeaux (flags)
 function generateStoneVariants(id, name, withWall, withStairs) {
-    // 1. On nettoie le nom de base (ex: "Polished Blackstone Bricks")
+    // 1. On nettoie le nom de base pour éviter les répétitions TROP bizarres dans les variantes (please maman)
     let baseName = name
         .replace(/^Block of /i, "")
         .replace(/ Block$/i, "");
 
-    // 2. LOGIQUE DE NOMMAGE PROPRE
-    // Si on a des "Bricks", pour les variantes, on met au singulier "Brick"
-    // Exemple: "Polished Blackstone Bricks" -> "Polished Blackstone Brick Stairs"
+    // 2. LE TRUC DES NOMS SUPER CHIANT
+
     const variantNameBase = baseName.replace(/ Bricks$/i, " Brick");
 
     const variants = [
@@ -168,11 +160,8 @@ function generateStoneVariants(id, name, withWall, withStairs) {
     variants.forEach(v => {
         let vId = id + v.suffix;
 
-        // Correctifs d'IDs pour correspondre à tes fichiers .png
         vId = vId.replace("quartz_block_", "quartz_");
         
-        // Minecraft utilise "polished_blackstone_brick_stairs" (sans le S à brick)
-        // alors que le bloc de base est "polished_blackstone_bricks"
         if (vId.includes("blackstone_bricks_")) {
             vId = vId.replace("blackstone_bricks_", "blackstone_brick_");
         }
@@ -180,7 +169,7 @@ function generateStoneVariants(id, name, withWall, withStairs) {
         if(!generated.find(i => i.id === vId)) {
             generated.push({
                 id: vId, 
-                name: `${variantNameBase} ${v.n}`, // Donne "Polished Blackstone Brick Stairs"
+                name: `${variantNameBase} ${v.n}`,
                 category: "Building",
                 icon: `assets/items/${vId}.png`,
                 recipes: [v.r], 
@@ -198,7 +187,7 @@ function generateStoneVariants(id, name, withWall, withStairs) {
         const idSWood = `stripped_${t}_wood`;
         const p = `${t}_planks`;
 
-        // LOGS ET WOOD
+        // LOGS ET WOODS
         const bases = [
             { id: idLog, name: `${type} Log`, r: null },
             { id: idSLog, name: `Stripped ${type} Log`, r: null },
@@ -226,7 +215,7 @@ function generateStoneVariants(id, name, withWall, withStairs) {
             ]
         });
 
-        // DÉRIVÉS
+        // TRUCS DIFFERENTS
         const variants = [
             { id: `${t}_stairs`, name: "Stairs", qty: 4, r: [[p,null,null],[p,p,null],[p,p,p]] },
             { id: `${t}_slab`, name: "Slab", qty: 6, r: [[null,null,null],[p,p,p],[null,null,null]] },
@@ -245,7 +234,7 @@ function generateStoneVariants(id, name, withWall, withStairs) {
         });
     });
 
-    // --- 2. GÉNÉRATION DES COULEURS (Lits, Verres, Laines, etc.) ---
+    // --- 2. COULEURS ---
     colors.forEach(color => {
         const c = color;
         const dye = `${c}_dye`;
@@ -274,9 +263,8 @@ function generateStoneVariants(id, name, withWall, withStairs) {
     return generated;
 }
 
-// 1. IMAGE INTELLIGENTE
 function getImgHTML(iconPath, className = "", itemId = "") {
-    // Si l'iconPath est vide mais qu'on a un ID (ex: "sand")
+
     let finalPath = iconPath;
     if (!finalPath && itemId) {
         finalPath = `assets/items/${itemId}.png`;
@@ -288,15 +276,15 @@ function getImgHTML(iconPath, className = "", itemId = "") {
             onerror="handleImageError(this, '${itemId}')">`;
 }
 
-// Fonction de secours appelée en cas d'erreur de chargement
+
 function handleImageError(img, itemId) {
-    // 1. Si on a échoué sur un .png, on tente le .webp
+
     if (img.src.endsWith('.png')) {
         img.src = img.src.replace('.png', '.webp');
     } 
-    // 2. Si on a déjà tenté le .webp ou si ça échoue encore
+
     else if (!img.src.includes('default.png')) {
-        img.src = 'assets/items/default.png'; // Ton image de secours
+        img.src = 'assets/items/default.png';
     }
 }
 
@@ -306,7 +294,6 @@ document.addEventListener('DOMContentLoaded', () => {
         allItems = autoGenerateWood(data);
         renderList(allItems);
         
-        // Ajouter l'écouteur de recherche
         const searchInput = document.getElementById('search');
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
@@ -325,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).catch(err => console.error("Erreur JSON:", err));
 });
 
-// 4. LISTE (CORRIGÉE : Affiche Craft OU Four)
+// 4. LISTE
 function renderList(items) {
     const container = document.getElementById('item-list');
     container.innerHTML = '';
@@ -343,15 +330,14 @@ function renderList(items) {
         groups[cat].push(item);
     });
 
-    // 3. Afficher les catégories et leurs items
+
     for (const categoryName in groups) {
-        // Créer le titre de la catégorie
+
         const title = document.createElement('h2');
         title.className = 'category-title';
         title.innerText = categoryName;
         container.appendChild(title);
 
-        // Créer les items de cette catégorie
         groups[categoryName].forEach(item => {
             const div = document.createElement('div');
             div.className = 'item-row';
@@ -362,7 +348,6 @@ function renderList(items) {
     }
 }
 
-// 5. DÉTAILS (CORRIGÉ : Clic sur ingrédients de nouveau actif)
 function showDetailsById(id) {
     const item = allItems.find(i => i.id === id);
     const panel = document.getElementById('details-panel');
@@ -383,7 +368,6 @@ function showDetailsById(id) {
             recipe.flat().forEach(slotId => {
                 const finalId = GROUPS[slotId] || slotId;
                 const ing = allItems.find(i => i.id === finalId);
-                // REMIS ICI : onclick pour naviguer
                 html += `<div class="slot" ${ing ? `onclick="showDetailsById('${ing.id}')" style="cursor:pointer"` : ''}>
                             ${ing ? getImgHTML(ing.icon) : ''}
                          </div>`;
@@ -408,7 +392,6 @@ function showDetailsById(id) {
                 <div class="slot large">${getImgHTML(item.icon)}</div>
             </div>`;
     }
-    // --- SECTION SI RIEN N'EST DISPONIBLE ---
     if ((!item.recipes || item.recipes.length === 0) && !item.smelting) {
         html += `
             <div class="no-recipe-box">

@@ -50,26 +50,26 @@
 @keyframes walk-around {
     0% {
         left: -100px;
-        transform: scaleX(-1); /* Regarde vers la droite (si de base il regarde à gauche) */
+        transform: scaleX(-1);
     }
     45% {
-        transform: scaleX(-1); /* Continue de regarder à droite */
+        transform: scaleX(-1);
     }
     50% {
         left: calc(100% - 100px);
-        transform: scaleX(1); /* Se retourne vers la gauche */
+        transform: scaleX(1);
     }
     95% {
-        transform: scaleX(1); /* Continue de regarder à gauche */
+        transform: scaleX(1);
     }
     100% {
         left: -100px;
-        transform: scaleX(-1); /* Se retourne pour recommencer */
+        transform: scaleX(-1);
     }
 }
 summary:hover span {
     text-decoration: underline;
-    color: #85b6ee !important; /* Change de couleur au survol */
+    color: #85b6ee !important;
 }
 footer {
     position: fixed;
@@ -112,7 +112,7 @@ body {
 header img {
     /* --- POSITIONNEMENT --- */
     position: absolute;
-    right: 0;   /* Collé au mur de droite */
+    right: 0;
     top: 0;
     bottom: 0;
     
@@ -222,7 +222,7 @@ h2 {
 .card:hover {
     transform: scale(1.03);
     background: #7a7a7a;
-    outline: 3px solid white; /* Sélection blanche comme dans l'inventaire */
+    outline: 3px solid white;
 }
 
 /* LIENS */

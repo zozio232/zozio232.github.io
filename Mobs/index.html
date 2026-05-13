@@ -9,7 +9,7 @@
     <title>AmaiCraft - Mob Sound Player</title>
 
     <style>
-
+        /* POLICE */
         @font-face {
             font-family: 'Minecraftia';
             font-style: normal;
@@ -20,24 +20,18 @@
         body {
             font-family: 'Minecraftia', 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            /* Texture de fond */
             background-image: url('bricks.jpg'); 
             background-repeat: repeat;
             background-size: 64px;
             background-attachment: fixed;
-            color: white;
-
-            
+            color: white;      
         }
 
         header img {
-            /* --- POSITIONNEMENT --- */
             position: absolute;
-            right: 0;   /* Collé au mur de droite */
+            right: 0;
             top: 0;
             bottom: 0;
-            
-            /* --- TAILLE --- */
             height: 100%;
             width: auto;
         }
@@ -47,15 +41,13 @@
             border-bottom: 4px solid #000;
             padding: 20px;
             text-align: center;
-
-                /* --- AJOUT INDISPENSABLE --- */
-            position: relative; /* Sert de repère pour le perroquet */
-            overflow: hidden;    /* Empêche le perroquet de déborder si besoin */
-            min-height: 70px;   /* Ajuste selon la taille de ton texte pour pas que ce soit trop plat */
+            position: relative;
+            overflow: hidden;
+            min-height: 70px;
         }
         summary:hover span {
             text-decoration: underline;
-            color: #85b6ee !important; /* Change de couleur au survol */
+            color: #85b6ee !important;
         }
         header h1 {
             margin: 0;
@@ -64,7 +56,7 @@
             letter-spacing: 2px;
         }
 
-        /* NAV BAR STYLE BOUTONS MC */
+        /* NAV */
         .nav {
             background: rgba(0, 0, 0, 0.6);
             padding: 10px;
@@ -119,66 +111,56 @@
             z-index: 2000;
         }
 
-
-
-
-
-        /* Container principal */
         .container {
             padding: 20px;
-            margin-bottom: 100px; /* Espace pour le footer */
+            margin-bottom: 100px;
         }
 
-        /* Style des boutons dossiers */
         .tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: -4px; /* Pour coller au contenu */
+            margin-bottom: -4px;
         }
 
       .tab-btn {
-            /* Couleurs de base Minecraft */
             background-color: #7e7e7e;
             color: #ffffff;
             
-            /* Police et texte */
             font-family: 'Minecraftia', sans-serif;
             font-size: 14px;
             text-shadow: 2px 2px 0px #3f3f3f;
-            
-            /* Bordures complexes (Effet 3D Pixel) */
+
             border: 2px solid #000000;
-            box-shadow: inset -2px -4px 0px #4a4a4a, /* Ombre interne */
-                        inset 2px 4px 0px #ababab;  /* Lumière interne */
+            box-shadow: inset -2px -4px 0px #4a4a4a,
+                        inset 2px 4px 0px #ababab;
             
             padding: 10px 20px;
             cursor: pointer;
             position: relative;
             margin: 0 2px;
             
-            /* Empêche la sélection du texte */
             user-select: none;
-            transition: none; /* Pas de transition fluide, Minecraft est "instantané" */
+            transition: none;
         }
 
         .tab-btn:hover {
             transform: scale(1.03);
             background: #7a7a7a;
-            outline: 3px solid white; /* Sélection blanche comme dans l'inventaire */
+            outline: 3px solid white;
         }
         .tab-btn:active {
             background-color: #4e4e4e;
-            box-shadow: inset 2px 4px 0px #2a2a2a, /* Inversion des ombres */
+            box-shadow: inset 2px 4px 0px #2a2a2a,
                         inset -2px -4px 0px #7e7e7e;
-            padding-top: 12px; /* Simulation d'enfoncement */
+            padding-top: 12px;
             padding-bottom: 8px;
         }
         .tab-btn.active {
             background-color: #555555;
             border-color: #ffffff;
-            box-shadow: inset 2px 4px 0px #2a2a2a; /* Reste "enfoncé" */
+            box-shadow: inset 2px 4px 0px #2a2a2a;
         }
-        /* Zone du contenu (le "dossier") */
+
         .folder-content {
             background: rgba(0, 0, 0, 0.7);
             border: 4px solid #000;
@@ -188,28 +170,16 @@
             gap: 20px;
         }
 
-        /* Carte du Mob */
-
-        /* Filtre Rouge quand on clique (Flash de dégâts) */
-        /* L'effet de "dégât" Minecraft */
         .mob-card.playing {
-            /* Mix de filtres pour obtenir un rouge pur et saturé */
             filter: sepia(100%) saturate(500%) hue-rotate(-50deg) brightness(0.8);
-            
-            /* Le petit saut/contraction du mob */
             transform: scale(0.9);
-            
-            /* Bordure rouge pour accentuer l'effet */
             border-color: #ff0000;
-            
-            /* Animation fluide mais rapide */
             transition: all 0.1s ease-out;
         }
         #mob-container {
             user-select: none;
             -webkit-user-drag: none;
         }
-        /* Carte du Mob ajustée */
         .mob-card {
             background: #4e4e4e;
             border: 4px solid #000;
@@ -228,14 +198,13 @@
             height: 90%;
             object-fit: contain;
             image-rendering: pixelated;
-            pointer-events: none; /* Empêche de cliquer/glisser l'image seule */
+            pointer-events: none;
             transition: transform 0.1s, filter 0.1s;
         }
         .mob-card.playing img {
             filter: sepia(100%) saturate(600%) hue-rotate(-50deg) brightness(0.7);
-            transform: scale(0.85); /* Le mob se contracte */
+            transform: scale(0.85);
         }
-        /* État désactivé pendant le cooldown */
         .mob-card.cooldown {
             cursor: not-allowed;
             filter: grayscale(0.4);
@@ -315,8 +284,6 @@
             const span = document.createElement('span');
             span.innerText = char;
             
-            // Génération d'une couleur pastel
-            // On reste sur des valeurs hautes (entre 127 et 255) pour garder de la clarté
             const hue = Math.floor(Math.random() * 360);
             const color = `hsl(${hue}, 100%, 80%)`;
             span.style.color = color;
@@ -334,7 +301,7 @@
 
 
     let allMobs = [];
-    const COOLDOWN_TIME = 800; // Temps en millisecondes (0.8s)
+    const COOLDOWN_TIME = 800;
 
     fetch('mobs.json')
         .then(response => response.json())
@@ -352,22 +319,17 @@
         filteredMobs.forEach(mob => {
             const card = document.createElement('div');
             card.className = 'mob-card';
-            // Plus de texte, juste l'image
             card.innerHTML = `<img src="${mob.image}" alt="${mob.name}" title="${mob.name}">`;
-
-            // On utilise une variable locale pour le cooldown de cette carte précise
             let isWaiting = false;
 
             card.onclick = () => {
-                if (isWaiting) return; // Si en cooldown, on ne fait rien
+                if (isWaiting) return;
 
                 isWaiting = true;
                 playRandomSound(mob.sounds, card);
 
-                // Activation du cooldown visuel
                 card.classList.add('cooldown');
 
-                // Désactivation du cooldown après le délai
                 setTimeout(() => {
                     isWaiting = false;
                     card.classList.remove('cooldown');
@@ -384,12 +346,10 @@
         const randomSound = soundList[Math.floor(Math.random() * soundList.length)];
         const audio = new Audio(randomSound);
 
-        // Ajoute la classe à la carte
         element.classList.add('playing');
         
         audio.play();
 
-        // Retire l'effet rouge très vite (durée d'un hit Minecraft)
         setTimeout(() => {
             element.classList.remove('playing');
         }, 150); 

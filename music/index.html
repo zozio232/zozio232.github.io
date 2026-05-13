@@ -18,8 +18,7 @@
         }
 
         body {
-            /* ON REMET TON FOND LEAVES */
-            background-image: url("Leaves.png");
+            background-image: url("Leaves.png"); /* Après ya aussi l'autre avec url("../cherry_leaves.png") */
             background-size: 64px;
             background-repeat: repeat;
             image-rendering: pixelated;
@@ -31,7 +30,7 @@
             flex-direction: column;
         }
 
-        /* --- LE MENU DU HAUT (COPIÉ DE L'ACCUEIL) --- */
+        /* --- HEADER ET NAV --- */
         header {
             background: rgba(0, 0, 0, 0.8);
             border-bottom: 4px solid #000;
@@ -75,7 +74,7 @@
             font-size: 14px;
         }
 
-        /* --- JUKEBOX BIEN AU CENTRE --- */
+        /* --- JUKEBOX --- */
         #jukebox-container {
             flex: 1;
             display: flex;
@@ -86,7 +85,7 @@
         }
 
         #jukebox {
-            width: 220px; /* On le garde un peu plus grand pour le style */
+            width: 220px;
             cursor: pointer;
             transition: transform 0.1s;
             z-index: 10;
@@ -133,40 +132,37 @@
 
         img { -webkit-user-drag: none; user-select: none; }
         
-        /* Bloque la sélection bleue */
         .disc, #inventory, #jukebox {
             user-select: none;
             -webkit-user-select: none;
         }
 
-        .nav { position: relative; } /* Important pour le bouton à gauche */
+        .nav { position: relative; }
 
         #settings-btn {
             position: absolute;
             left: 10px;
         }
 
-        /* Look du slider (Gris foncé comme ton image) */
         .mc-slider-container {
             position: relative;
             width: 300px;
             height: 40px;
-            background: #404040; /* Gris foncé */
+            background: #404040;
             border: 2px solid #000;
         }
-        /* LE CURSEUR : Le petit rectangle gris avec bordure blanche (Image 1) */
+
         #volume-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 15px; /* Un peu plus fin pour coller à l'image */
+            width: 15px;
             height: 36px;
-            background: rgb(163, 163, 163); /* Gris clair pour le centre */
-            border: 2px solid #000; /* La bordure noire extérieure */
-            
-            /* L'effet de relief blanc/gris que tu as sur ton zoom */
+            background: rgb(163, 163, 163);
+            border: 2px solid #000;
+
             box-shadow: 
-                inset 2px 2px 0px #ffffff,   /* Ligne blanche en haut à gauche */
-                inset -2px -2px 0px #555555; /* Ligne grise foncée en bas à droite */
+                inset 2px 2px 0px #ffffff,
+                inset -2px -2px 0px #555555;
             
             cursor: pointer;
         }
@@ -185,38 +181,36 @@
 
         #close-settings {
             margin-top: 20px;
-            width: 310px; /* Aligné avec la barre de volume */
+            width: 310px;
             padding: 10px;
-            background: #555; /* Gris moyen Minecraft */
+            background: #555;
             color: white;
             font-family: 'Minecraftia', sans-serif;
             font-size: 16px;
             cursor: pointer;
             text-transform: uppercase;
-            /* L'effet de relief Minecraft */
+
             border: 2px solid #000;
             border-top-color: #ababab;
             border-left-color: #ababab;
         }
 
         #close-settings:hover {
-            background: #666; /* Un peu plus clair au survol */
+            background: #666;
         }
 
         #close-settings:active {
-            /* Effet d'enfoncement quand on clique */
             border-top-color: #000;
             border-left-color: #000;
             background: #444;
         }
-        /* LE TEXTE : Centré par-dessus avec l'ombre portée (Image 2) */
+
         .mc-slider-label {
             position: absolute;
             width: 100%;
             line-height: 40px;
             text-align: center;
             color: white;
-            /* 0,0,0 c'est du noir, et 0.6 c'est l'opacité (60%) */
             background-color: rgba(0, 0, 0, 0.6); 
             background-image: url("../recipecraft/assets/background/image.png");
             text-shadow: 2px 2px 0px #000;
@@ -224,7 +218,7 @@
             pointer-events: none;
             z-index: 1;
         }
-        /* Container de la barre (Gris foncé de ton image) */
+
         .mc-slider-container {
             position: relative;
             width: 310px;
@@ -309,7 +303,6 @@ function onYouTubeIframeAPIReady() {
                 event.target.unMute();
             },
             'onError': (event) => {
-                // C'est ici que tu sauras pourquoi ça ne joue pas !
                 const errorCodes = {
                     2: "ID de vidéo invalide",
                     5: "Contenu HTML5 impossible à lire",
@@ -341,12 +334,11 @@ discNames.forEach(name => {
     const img = document.createElement('img');
     img.src = `Discs/${name}.png`;
     img.className = 'disc';
-    img.dataset.id = name; // ON DOIT UTILISER DATA-ID
+    img.dataset.id = name;
     
     img.addEventListener('mousedown', (e) => {
         e.preventDefault();
         isDragging = true;
-        // ON STOCKE L'ID ICI
         currentDiscData = { id: img.dataset.id, src: img.src }; 
         dragIcon.src = img.src;
         dragIcon.style.display = 'block';
@@ -371,8 +363,7 @@ window.addEventListener('mouseup', (e) => {
     if (!isDragging) return;
     const rect = jukebox.getBoundingClientRect();
     if (e.clientX > rect.left && e.clientX < rect.right && e.clientY > rect.top && e.clientY < rect.bottom) {
-        
-        // On récupère directement l'id (ex: "cat") stocké dans currentDiscData
+
         const discName = currentDiscData.id; 
         const videoId = ytIds[discName];
 
@@ -399,7 +390,7 @@ window.addEventListener('mouseup', (e) => {
 jukebox.addEventListener('click', () => {
     if (jukebox.classList.contains('active')) {
         ejectDisc();
-        // CORRECT : On utilise stopVideo() de l'API YouTube
+
         if (player) player.stopVideo();
         jukebox.classList.remove('active');
     }
@@ -419,16 +410,12 @@ document.getElementById('close-settings').onclick = () => {
 };
 
 
-// On récupère les deux éléments
 const vSlider = document.getElementById('volume-slider');
 const vText = document.getElementById('volume-value');
 
-// Dès que le slider change (oninput)
 vSlider.oninput = function() {
-    // 1. On met à jour le texte (ex: "50%")
     vText.innerText = this.value + "%";
     
-    // 2. On change le volume du lecteur YouTube s'il existe
     if (player && player.setVolume) {
         player.setVolume(this.value);
     }

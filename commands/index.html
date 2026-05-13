@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>AmaiCraft - Commands</title>
     <style>
-        /* --- POLICE ET VARIABLES --- */
+        /* --- POLICE --- */
         @font-face {
             font-family: 'Minecraftia';
             font-style: normal;
@@ -21,7 +21,6 @@
             --mc-border-dark: #555555;
         }
 
-        /* --- STYLE DE BASE (Ton CSS) --- */
         html, body {
             margin: 0;
             padding: 0;
@@ -57,7 +56,7 @@
         }
         summary:hover span {
             text-decoration: underline;
-            color: #85b6ee !important; /* Change de couleur au survol */
+            color: #85b6ee !important;
         }
         header img {
             position: absolute;
@@ -90,7 +89,6 @@
             border-left-color: #dbdbdb;
         }
 
-        /* --- SECTION COMMANDES (Nouveau) --- */
         .container {
             max-width: 900px;
             margin: 30px auto;
@@ -146,7 +144,7 @@
         }
 
         .command-code {
-            color: #ffff55; /* Or Minecraft */
+            color: #ffff55;
             text-shadow: 2px 2px 0px #3f3f15;
             font-size: 14px;
         }
@@ -157,7 +155,6 @@
             margin-top: 4px;
         }
 
-        /* Notification de copie */
         .toast {
             position: fixed;
             top: 0;
@@ -326,7 +323,7 @@
 </footer>
 
 <script>
-    // Fonction pour copier les commandes
+
     function copyCmd(text) {
         navigator.clipboard.writeText(text).then(() => {
             const toast = document.getElementById('copyToast');
@@ -337,7 +334,6 @@
         });
     }
 
-    // Effet multicolore sur le bouton de don
     window.onload = function() {
         const Coff = document.getElementById('Don');
         const text = Coff.innerText;
