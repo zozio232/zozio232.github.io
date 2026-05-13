@@ -9,7 +9,7 @@
 <meta name="google-site-verification" content="fUmGyUGjIxftiF5VJGLto4SFagO4raQHphqdCQlt-yY" />
 
 <style>
-/* Importation d'une police style Minecraft (optionnel mais recommandé) */
+/* La police Minecraft */
 @font-face {
     font-family: 'Minecraftia';
     font-style: normal;
@@ -127,10 +127,9 @@ header {
     padding: 20px;
     text-align: center;
 
-        /* --- AJOUT INDISPENSABLE --- */
-    position: relative; /* Sert de repère pour le perroquet */
-    overflow: hidden;    /* Empêche le perroquet de déborder si besoin */
-    min-height: 70px;   /* Ajuste selon la taille de ton texte pour pas que ce soit trop plat */
+    position: relative;
+    overflow: hidden;
+    min-height: 70px;
 }
 
 header h1 {
@@ -140,7 +139,6 @@ header h1 {
     letter-spacing: 2px;
 }
 
-/* NAV BAR STYLE BOUTONS MC */
 .nav {
     background: rgba(0, 0, 0, 0.6);
     padding: 10px;
@@ -172,11 +170,11 @@ header h1 {
     margin: 30px auto;
     background: var(--mc-panel);
     border: 4px solid #000;
-    /* Effet biseau style UI Minecraft */
+
     box-shadow: inset 4px 4px 0px var(--mc-border-light), 
                 inset -4px -4px 0px var(--mc-border-dark);
     padding: 30px;
-    color: #3f3f3f; /* Texte sombre sur fond clair comme dans les livres MC */
+    color: #3f3f3f;
 }
 
 h2 {
@@ -187,18 +185,16 @@ h2 {
     color: #1d1d1d;
 }
 
-/* GRID STYLE BLOCS */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 15px;
 }
 
-/* CARTES STYLE SLOT D'INVENTAIRE */
 .card {
     background: #8b8b8b;
     border: 3px solid #000;
-    border-top-color: #373737; /* Ombre inversée pour creuser l'item */
+    border-top-color: #373737;
     border-left-color: #373737;
     border-right-color: #ffffff;
     border-bottom-color: #ffffff;
@@ -247,7 +243,7 @@ footer {
 
 summary:hover span {
     text-decoration: underline;
-    color: #85b6ee !important; /* Change de couleur au survol */
+    color: #85b6ee !important;
 }
 </style>
 </head>
@@ -349,14 +345,12 @@ summary:hover span {
     window.onload = function() {
         const Coff = document.getElementById('Don');
         const text = Coff.innerText;
-        Coff.innerHTML = ''; // On vide le titre pour le reconstruire
+        Coff.innerHTML = '';
 
         for (let char of text) {
             const span = document.createElement('span');
             span.innerText = char;
             
-            // Génération d'une couleur pastel
-            // On reste sur des valeurs hautes (entre 127 et 255) pour garder de la clarté
             const hue = Math.floor(Math.random() * 360);
             const color = `hsl(${hue}, 100%, 80%)`;
             span.style.color = color;
@@ -370,11 +364,9 @@ summary:hover span {
     const steve = document.querySelector('.steve-animation');
 
     steve.addEventListener('click', () => {
-        // Si Steve n'est pas déjà en train de sauter
         if (!steve.classList.contains('jumping')) {
             steve.classList.add('jumping');
 
-            // On retire la classe après 800ms (durée de l'animation)
             setTimeout(() => {
                 steve.classList.remove('jumping');
             }, 800);
