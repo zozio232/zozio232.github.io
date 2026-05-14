@@ -289,7 +289,8 @@ const ytIds = {
     "relic": "x9QP2TWSY0s",
     "precipice": "dEgjOyBwIaE",
     "tears": "Eo0QjT7mkzs",
-    "lava_chicken": "QV7tGfxa58E"
+    "lava_chicken": "QV7tGfxa58E",
+    "bounce": "rUN4riKL2s4"
 };
 
 let player;
@@ -299,7 +300,7 @@ function onYouTubeIframeAPIReady() {
         playerVars: { 'autoplay': 1, 'controls': 0 },
         events: {
             'onReady': (event) => {
-                console.log("✅ Le lecteur est prêt !");
+                console.log("✅ The Reader is ready!");
                 event.target.unMute();
             },
             'onError': (event) => {
